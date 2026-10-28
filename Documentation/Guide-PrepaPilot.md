@@ -2,6 +2,8 @@
 
 **Version 2.26.0**
 
+**Livraison finale préparée le 28 octobre 2026 :** les sources sont disponibles sur [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison est configurée pour ce dépôt et pour Google Drive ; la première Release publique reste à publier pour proposer les téléchargements. Aucun compte Google n’est connecté d’office.
+
 PrépaPilot est une application Windows, disponible avec un installateur et en version portable, pour organiser tes études : notes, documents, repères personnels et temps consacré à tes activités. Elle s’adapte à tes matières et à ton parcours, au lycée, en licence, en BTS, en prépa ou dans une autre formation. Le nom PrépaPilot est conservé pour le moment.
 
 ## Ouvrir l’application
@@ -18,7 +20,7 @@ La traduction anglaise couvre toute l’interface. Pour changer de langue, ouvre
 
 Depuis la version 2.19, les versions reliées au dépôt public de PrépaPilot recherchent les mises à jour au démarrage, au plus une fois par jour. Une notification indique quand une nouvelle version est disponible. **Réglages → Mises à jour** permet aussi une recherche manuelle. Avec la version installée, **Télécharger et installer** récupère l’installateur, vérifie son empreinte, puis propose de fermer l’application et de lancer l’installation. Mets une séance en cours en pause et enregistre tes modifications avant de continuer. L’installateur conserve tes notes, documents et paramètres, sans désinstallation préalable. Tu peux également télécharger et ouvrir toi-même l’installateur depuis **Releases**.
 
-Le portable ouvre la page **Releases** pour télécharger le nouveau ZIP. Extrais-le dans un nouveau dossier et utilise l’export puis l’import complet pour transférer ton espace ; conserve l’ancienne copie jusqu’à la vérification. Si le dépôt n’a pas encore été configuré, l’application l’indique dans les Réglages : les versions construites ensuite par le workflow GitHub reçoivent automatiquement cette configuration publique.
+Le portable ouvre la page **Releases** pour télécharger le nouveau ZIP. Extrais-le dans un nouveau dossier et utilise l’export puis l’import complet pour transférer ton espace ; conserve l’ancienne copie jusqu’à la vérification. La livraison finale utilise `clmtxx/PrepaPilot` comme dépôt de mises à jour. Les anciennes copies non configurées peuvent encore l’indiquer dans les Réglages ; elles doivent recevoir une distribution configurée.
 
 La navigation horizontale donne accès aux espaces principaux. Le thème clair est proposé au départ ; un thème déjà choisi est conservé. Le thème sombre et les animations réduites se règlent dans **Réglages**.
 
@@ -216,7 +218,7 @@ L’archive Windows distribue le logiciel. Le fichier `.prepapilot` transporte t
 
 Dans **Réglages → Gérer mes sauvegardes Google Drive**, connecte ton compte dans ton navigateur puis crée ou retrouve ton dossier PrépaPilot. Google Drive pour ordinateur n’est pas nécessaire.
 
-L’accès Google est préparé une seule fois par la personne qui distribue PrépaPilot, puis intégré à l’installateur. Avec une version configurée, clique sur **Se connecter à Google** et autorise l’application : tu n’as pas à créer de projet Google Cloud ni à fournir de fichier JSON. Chacun utilise son propre compte et ses propres sauvegardes. Si ta copie indique que l’accès n’a pas encore été préparé, demande une version configurée à son distributeur ; l’export local reste disponible. Aucun client Google réel n’est encore fourni dans ce projet et la connexion réelle reste à vérifier après activation. Le guide `Documentation/Google-Drive.md` sépare la préparation éditeur et l’option avancée pour les personnes qui souhaitent utiliser leur propre client.
+L’accès Google commun est intégré à la livraison finale et l’application Google est en production. Clique sur **Se connecter à Google** et autorise l’application : tu n’as pas à créer de projet Google Cloud ni à fournir de fichier JSON. Google reste facultatif ; chacun utilise son propre compte et aucun compte n’est connecté d’office. Le 28 octobre 2026, une connexion réelle, une sauvegarde de 14 objets, une seconde sans nouvel envoi ni nouvelle version et une restauration exacte des données et documents ont réussi dans des espaces fictifs distincts. L’essai sur un autre PC et avec un autre compte reste à effectuer. Le guide `Documentation/Google-Drive.md` donne les étapes ; la [notice de confidentialité](https://github.com/clmtxx/PrepaPilot/blob/main/PRIVACY.md) décrit les données et les transferts.
 
 Coche les catégories à envoyer : documents originaux avec leurs dossiers et leur classement, notes, sommeil, autres activités, emploi du temps et vacances, repères, profil et préférences. Les matières et années nécessaires sont incluses. **Sauvegarder maintenant** vérifie les éléments déjà présents : seuls les nouveaux éléments ou les modifications sont envoyés. Les anciennes versions restent disponibles ; une sauvegarde identique ne crée pas de doublon.
 

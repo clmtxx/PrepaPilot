@@ -1,6 +1,14 @@
 # Vérifications avant publication — 28 octobre 2026
 
-Ce compte rendu complète les rapports historiques de [vérification de l’application](Sources/PrepaPilot/VERIFICATION.md) et de [distribution Windows](VERIFICATION-DISTRIBUTION.md). Il décrit les contrôles réalisés sur les sources et l’installateur local **2.26.0**. Il ne constitue pas une validation d’un compte Google réel ni d’une Release GitHub publique.
+Ce compte rendu complète les rapports historiques de [vérification de l’application](Sources/PrepaPilot/VERIFICATION.md) et de [distribution Windows](VERIFICATION-DISTRIBUTION.md). Il décrit les contrôles réalisés le 28 octobre 2026 sur les sources, les installateurs locaux **2.26.0** et un parcours Google réel. Les sources sont sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; **la première Release n’est pas annoncée comme publiée** par ce compte rendu.
+
+## État actuel — Google et distribution configurés
+
+Le client OAuth de bureau commun est créé, l’application Google est **en production** et le secret GitHub Actions **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré. Les distributions finales reçoivent ce client et `clmtxx/PrepaPilot` comme canal de mises à jour. Google reste facultatif et aucun compte n’est connecté d’office. La [notice de confidentialité](PRIVACY.md) décrit le stockage, les sauvegardes et les requêtes réseau.
+
+Un parcours avec un vrai compte Google et uniquement des données applicatives fictives a réussi : connexion OAuth avec PKCE et protection locale DPAPI des jetons ; première sauvegarde de **14 objets** ; seconde sauvegarde avec **0 envoi et 14 objets réutilisés**, sans nouvelle version ; restauration des données et du document avec comparaison exacte vers un espace local distinct. Les jetons de l’essai ont été effacés. L’essai sur un autre ordinateur et avec un autre compte reste à effectuer.
+
+Une première construction configurée a passé les diagnostics compilés français et anglais, les mêmes diagnostics depuis le ZIP extrait, la réinstallation 2.26.0 → 2.26.0 et la mise à jour 2.25.0 → 2.26.0 avec conservation des données fictives. L’installateur de cet essai porte l’empreinte SHA-256 `ac5526074dd47542096f21f4167efcf1b3e3ee38a134bc343995b9243675ee8e`. Une dernière reconstruction documentaire embarque le guide actualisé ; les empreintes à diffuser sont celles du **`SHA256SUMS.txt` de cette dernière construction**, et non une empreinte historique de ce rapport.
 
 ## Tests des sources
 
@@ -23,7 +31,7 @@ Le nettoyage de `scripts/build_release.py` refusait les chemins Windows 8.3, com
 
 Deux tests de régression ont été ajoutés : variantes réelles de chemins courts pour la racine et la cible ; refus de jonctions réelles dans la cible, la racine ou un ancêtre, avec conservation d’un fichier témoin. Le contrôle existant des bornes de suppression vérifie aussi les dossiers étrangers et les sous-dossiers imbriqués. La suite des scripts passe ses **23 tests en 0,351 s** ; la création des jonctions fictives a nécessité l’accès local autorisé. Les résultats applicatifs et d’outils ci-dessus proviennent de la campagne précédente du même jour ; ces deux périmètres n’ont pas été relancés pour ce changement du constructeur.
 
-## Essais réels de l’installateur Windows
+## Historique — premiers essais réels de l’installateur Windows
 
 Deux parcours ont réussi avec `scripts/verify_installer.ps1`, dans un répertoire de programme temporaire et un espace de données utilisateur isolé :
 
@@ -44,6 +52,6 @@ Les anciens rapports indiquant que l’installation ou la désinstallation n’a
 
 Les preuves locales sont conservées dans `.local/Verification/Publication-2026-10-28` : `bilan-tests-final.json` décrit la campagne initiale de 907 contrôles ; `test-ci-short-path-before.log` reproduit le refus avant correctif et `tests-scripts-ci-short-path-final.log` consigne les 23 tests du constructeur corrigé. Les journaux d’application, d’outils et les deux journaux d’installation sont conservés au même endroit. Les résultats détaillés de l’installateur sont dans ses répertoires temporaires `.build/installer-tests`. Ces preuves locales ne sont pas nécessaires à l’utilisation de l’application.
 
-Les échanges Google et GitHub des tests automatisés sont simulés. Aucun aller-retour avec un véritable compte Google, aucun téléchargement depuis une Release publique et aucune campagne sur plusieurs ordinateurs ne sont validés par ce compte rendu.
+Les échanges Google et GitHub des tests automatisés restent simulés ; le parcours Google réel séparé est décrit en début de document. Aucun téléchargement depuis une Release publique ni aucune campagne sur plusieurs ordinateurs ne sont validés par ces essais.
 
-Une **future construction intégrant le dépôt public et le client OAuth Google** devra être vérifiée à nouveau : diagnostics compilés français et anglais, ZIP extrait, installation/mise à jour/désinstallation et nouvelles empreintes. La configuration du client ne remplace pas les essais réels de connexion, sauvegarde et restauration Google. La première Release publique devra également permettre de vérifier le canal réel de mises à jour.
+La dernière reconstruction documentaire doit passer les diagnostics compilés français et anglais puis ceux du ZIP extrait ; ses nouvelles empreintes accompagnent les fichiers. Les essais d’installation de la construction configurée précédente restent identifiés ci-dessus ; le workflow CI vérifie à nouveau l’installateur qu’il produit. La première Release publique permettra ensuite de vérifier le canal réel de mises à jour.

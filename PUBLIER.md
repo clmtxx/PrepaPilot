@@ -1,10 +1,12 @@
 # Mettre PrépaPilot à disposition sur GitHub
 
-Ce dossier rassemble les sources et la préparation des distributions Windows **2.26.0 du 27 octobre 2026**. La publication du dépôt et de la première **Release** reste à effectuer avec ton compte GitHub. Une fois cette Release publiée, les utilisateurs pourront télécharger un seul installateur, sans Python ni droits administrateur.
+Ce dossier rassemble les sources et les distributions Windows **2.26.0 préparées le 28 octobre 2026**. Le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) contient déjà les sources sur `main`. Le client Google commun est en production, son secret de construction est enregistré dans GitHub et le parcours réel de sauvegarde/restauration a réussi. **La première Release reste à publier** pour rendre les téléchargements disponibles ; cette préparation ne vaut pas publication.
 
-Depuis la version 2.25, la publication automatique par tag exige aussi un accès Google commun valide préparé par l’éditeur. Les livrables locaux ne contiennent pas encore de client Google réel. Tu peux construire une version de développement manuellement sans Google ; termine la section suivante avant une publication publique annonçant l’accès Google.
+La publication automatique par tag exige l’accès Google commun valide. Les distributions finales sont construites avec `clmtxx/PrepaPilot` pour les mises à jour et le client OAuth de bureau commun, sans compte connecté. Google reste facultatif pour chaque utilisateur. La [notice de confidentialité](PRIVACY.md) décrit ces échanges.
 
 ## 1. Mettre le dossier sur GitHub
+
+**Déjà effectué pour PrépaPilot :** le dépôt public `clmtxx/PrepaPilot` existe et ses sources sont sur `main`. Les instructions de première création ci-dessous restent une référence ; pour ce dépôt, envoie les prochaines modifications sur la branche existante.
 
 Utilise [GitHub Desktop](https://desktop.github.com/) pour envoyer le projet : il conserve les dossiers tels que `.github` et applique les exclusions de `.gitignore`.
 
@@ -21,6 +23,8 @@ Ces étapes suivent la [procédure GitHub Desktop](https://docs.github.com/en/de
 
 ## 2. Préparer une seule fois l’accès Google de l’application
 
+**État au 28 octobre 2026 :** le client commun réel est créé, l’application Google est en production et **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré comme secret GitHub Actions. Une connexion réelle, une sauvegarde de 14 objets, une seconde sans nouvel envoi ni nouvelle version et une restauration exacte vers un espace fictif distinct ont réussi. Les jetons de l’essai ont été effacés. Un autre PC et un autre compte restent à tester.
+
 Crée un projet Google et un client OAuth **Application de bureau** communs à PrépaPilot, avec Google Drive API et la seule autorisation `drive.file`. Le [guide Google Drive](Documentation/Google-Drive.md#éditeur--préparer-une-seule-fois-laccès-commun) détaille la préparation, les utilisateurs test, le passage en production et les vérifications d’identité demandées par Google.
 
 Dans le dépôt GitHub, ouvre **Settings → Secrets and variables → Actions**, puis choisis l’un des deux emplacements :
@@ -34,7 +38,7 @@ Cette identité d’application de bureau est distribuée avec PrépaPilot : la 
 
 Un client déjà présent dans `Sources/PrepaPilot/assets/google-oauth-client.json` peut aussi servir à la construction. Le passage par la variable ou le secret évite de devoir ajouter ce fichier aux sources. Conserve le même client pour les futures versions et les autres PC.
 
-Une publication par tag ajoute **`--require-google-drive`** : sans configuration valide, la construction s’arrête et la Release automatique n’est pas publiée. Le lancement manuel reste possible sans client pour les essais des fonctions locales. Les premiers tests réels de connexion, sauvegarde et restauration restent à réaliser après la préparation Google de ce projet.
+Une publication par tag ajoute **`--require-google-drive`** : sans configuration valide, la construction s’arrête et la Release automatique n’est pas publiée. Le lancement manuel reste possible sans client pour les essais des fonctions locales. Le parcours réel déjà vérifié et ses limites sont détaillés dans [VERIFICATION-PUBLICATION.md](VERIFICATION-PUBLICATION.md).
 
 ## 3. Construire les fichiers Windows sur GitHub
 
@@ -52,7 +56,7 @@ Le workflow inscrit automatiquement le nom du dépôt GitHub dans le programme p
 
 ## 4. Publier la première version
 
-Le dossier local **`A-publier`** contient aussi les fichiers Windows préparés pour une publication manuelle et reste hors de Git grâce au `.gitignore`. Les fichiers préparés avant la création du dépôt ne connaissent pas encore son adresse : utilise ceux du workflow réussi pour la première publication avec mises à jour intégrées. Garde ensemble l’installateur, le ZIP et le fichier de sommes provenant de la même construction. Une construction locale peut également recevoir le dépôt avec `--repository`, comme expliqué plus bas.
+Le dossier local **`A-publier`** contient les fichiers Windows de la livraison finale pour une publication manuelle et reste hors de Git grâce au `.gitignore`. La construction finale reçoit le dépôt `clmtxx/PrepaPilot` et le client Google commun. Garde ensemble l’installateur, le ZIP et le fichier de sommes provenant de la même construction ; les anciennes distributions sont archivées séparément. Les fichiers d’une construction GitHub réussie peuvent aussi être utilisés.
 
 1. Essaie l’installateur sur un compte ou un PC Windows de test. Vérifie le lancement depuis le menu Démarrer, un export/import et la désinstallation. Vérifie aussi le lancement du portable après extraction complète.
 2. Dans le dépôt GitHub, ouvre **Releases → Draft a new release**.
@@ -81,16 +85,16 @@ Si tu préfères conserver une publication manuelle, reprends la section 4 avec 
 
 - **Licence du code :** choisis les conditions de réutilisation que tu souhaites autoriser. Les licences des bibliothèques tierces sont déjà conservées ; elles ne définissent pas à elles seules la licence de ton code.
 - **Signature Windows :** aucun certificat d’éditeur n’est fourni par cette préparation. Un avertissement Windows peut apparaître. Une signature nécessitera ton propre certificat et sa configuration dans la chaîne de construction.
-- **Google Drive :** l’éditeur prépare l’accès une seule fois, le conserve pour les nouvelles versions et le fournit au workflow. Chaque utilisateur clique ensuite sur **Se connecter à Google** et autorise son compte. L’accès réel reste à activer et à vérifier pour ce projet ; les livrables locaux actuels n’intègrent aucun client réel. Suis [Documentation/Google-Drive.md](Documentation/Google-Drive.md).
+- **Google Drive :** l’accès commun est activé en production et son premier parcours réel est vérifié. Conserve ce client pour les nouvelles versions et le workflow. Chaque utilisateur clique sur **Se connecter à Google** et autorise son propre compte ; aucun compte n’est connecté dans les fichiers distribués. Suis [Documentation/Google-Drive.md](Documentation/Google-Drive.md).
 
 Pour reconstruire localement, consulte les options de `scripts/build_release.py` et le [guide de développement](Documentation/Developpement.md). Les résultats vont dans `dist` et sont exclus du dépôt, comme le contenu de `A-publier`.
 
 Depuis la racine du dépôt, utilise par exemple :
 
 ```powershell
-python -B ./scripts/build_release.py --repository proprietaire/PrepaPilot --google-oauth-client 'C:/Configuration-PrepaPilot/client-google.json' --require-google-drive
+python -B ./scripts/build_release.py --repository clmtxx/PrepaPilot --google-oauth-client 'C:/Configuration-PrepaPilot/client-google.json' --require-google-drive --expect-version 2.26.0
 ```
 
-Remplace `proprietaire/PrepaPilot` par ton dépôt réel et le chemin par celui de ton client Google de bureau. Le constructeur prépare ces informations dans une copie temporaire des ressources et ne modifie pas les sources. Pour une construction de développement sans Google, omets les deux options Google.
+Adapte le chemin à ton client Google de bureau et le numéro attendu pour une autre version. Le constructeur prépare ces informations dans une copie temporaire des ressources et ne modifie pas les sources. Pour une construction de développement sans Google, omets les deux options Google.
 
 Il est aussi possible de fournir `Sources/PrepaPilot/assets/update-channel.json` contenant uniquement `{"repository":"proprietaire/PrepaPilot"}` ; l’option `--repository` prend priorité. Aucun jeton n’est accepté dans ce fichier. Sans dépôt fourni, le programme reste utilisable et affiche que son canal de mises à jour n’est pas encore configuré. Un ancien programme fourni avec `--app-dir` conserve son dépôt de mises à jour : il faut recompiler pour le changer. L’intégration du client Google avec `--app-dir` se fait sur une copie de ce programme.

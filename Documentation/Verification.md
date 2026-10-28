@@ -1,4 +1,14 @@
-# Vérification de PrépaPilot 2.26.0 — 27 octobre 2026
+# Vérification de PrépaPilot 2.26.0 — état du 28 octobre 2026
+
+Les sources sont disponibles sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison finale est préparée avec ce dépôt pour les mises à jour et avec le client Google commun, activé en production. Le secret de construction GitHub est enregistré. La première Release publique reste à publier ; les sections historiques ci-dessous décrivent l’état à leur date.
+
+La campagne locale consolide **851 tests applicatifs réussis**, **23 tests de distribution réussis** après le correctif Windows 8.3, et **33 tests d’outils réussis avec 2 ignorés** faute de privilège de liens symboliques : **907 réussites et 2 ignorés sur 909 contrôles distincts**. Les reprises ne sont pas additionnées au nombre de cas. Le rapport [de publication](https://github.com/clmtxx/PrepaPilot/blob/main/VERIFICATION-PUBLICATION.md) détaille les contrôles.
+
+Les diagnostics compilés français et anglais réussissent dans la construction configurée et le ZIP extrait. Installation, réinstallation 2.26.0 → 2.26.0, mise à jour 2.25.0 → 2.26.0 et désinstallation ont été vérifiées dans un espace isolé, avec conservation des empreintes des données fictives et de la préférence anglaise. La dernière reconstruction documentaire embarque le guide actualisé ; ses fichiers doivent rester associés au `SHA256SUMS.txt` produit avec eux.
+
+Le parcours Google réel a réussi avec un vrai compte et uniquement des données applicatives fictives : OAuth PKCE, jetons protégés par DPAPI, première sauvegarde de 14 objets, seconde avec 0 envoi et 14 objets réutilisés sans nouvelle version, puis restauration exacte des données et du document vers un espace distinct. Les jetons de l’essai ont été effacés. Un autre PC et un autre compte restent à tester. Google est facultatif et aucun compte n’est connecté d’office ; voir la [confidentialité](https://github.com/clmtxx/PrepaPilot/blob/main/PRIVACY.md).
+
+## Historique — vérification du 27 octobre 2026
 
 ## Livraison 2.26 — suivi souris sur toutes les pages
 

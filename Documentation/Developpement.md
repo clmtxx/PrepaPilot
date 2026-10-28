@@ -4,7 +4,7 @@ L’application compilée fonctionne sans Python. Cette page concerne la modific
 
 ## Construire la distribution GitHub
 
-Le dossier **PrepaPilot-GitHub** est autonome : son README est l’entrée du dépôt à publier. Depuis sa racine, utilise Python 3.12 64 bits et [Inno Setup 6.3 ou ultérieur](https://jrsoftware.org/isdl.php) :
+Le dossier **PrepaPilot-GitHub** est autonome : son README est l’entrée du dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot), dont les sources ont été envoyées sur `main` le 28 octobre 2026. L’envoi des sources ne constitue pas à lui seul la publication d’une Release. Depuis sa racine, utilise Python 3.12 64 bits et [Inno Setup 6.3 ou ultérieur](https://jrsoftware.org/isdl.php) :
 
 ```powershell
 py -3.12 -m venv .venv
@@ -34,7 +34,11 @@ Le JSON est validé puis réduit aux informations du client de bureau : `install
 
 Le fichier intégré identifie l’application, et non un compte déjà connecté. Chaque utilisateur se connecte dans son propre navigateur ; ses jetons restent dans ses données locales. Une configuration personnelle importée depuis les options avancées prend la priorité sur celle du programme.
 
-Dans le workflow GitHub, les publications par tag exigent cette configuration ; les constructions manuelles de développement peuvent l’omettre. Renseigne `GOOGLE_OAUTH_CLIENT_JSON` dans les variables ou secrets du dépôt selon le workflow. Le contenu attendu est la configuration JSON du client de bureau, jamais les jetons d’un utilisateur. Avant de distribuer, vérifie la connexion et un aller-retour de sauvegarde sur deux PC avec ce même client. **Aucun client réel n’est encore fourni avec ce projet ; l’activation Google et ces essais restent à faire.**
+Dans le workflow GitHub, les publications par tag exigent cette configuration ; les constructions manuelles de développement peuvent l’omettre. **État vérifié le 28 octobre 2026 :** le client OAuth de bureau commun est créé, l’application Google est En production et `GOOGLE_OAUTH_CLIENT_JSON` est enregistré comme secret du dépôt `clmtxx/PrepaPilot`. Ce secret contient la configuration du client, jamais les jetons d’un utilisateur. Pour une autre configuration, fournis ce JSON dans les variables ou secrets attendus par le workflow.
+
+Un essai réel avec des données fictives a réussi : connexion PKCE, protection locale DPAPI, première sauvegarde de 14 objets, seconde sauvegarde sans envoi avec 14 objets réutilisés et aucune nouvelle version, puis restauration exacte des données et documents dans un espace distinct. Les jetons de l’essai ont été effacés. L’essai sur un autre PC et avec un autre compte reste à effectuer. La prochaine construction intégrant le dépôt et le client Google doit être revérifiée avant diffusion ; ces contrôles ne constituent pas une Release publiée.
+
+Google Drive reste facultatif. Aucun compte n’est connecté d’office dans une distribution ; chaque utilisateur autorise son propre compte. Les [informations de confidentialité](https://github.com/clmtxx/PrepaPilot/blob/main/PRIVACY.md) décrivent les données transférées et leur conservation.
 
 Les procédures suivantes concernent l’ancien espace de travail portable, avec ses dossiers **Application**, **Outils** et l’environnement Python voisin. Elles restent disponibles pour sa maintenance.
 
@@ -110,7 +114,7 @@ La mise à jour conserve `Application/PrepaPilot/data` et archive les anciens bi
 
 ## Maintenir les documents
 
-Pour préparer Google Drive, suis `Documentation/Google-Drive.md`. Le code utilise uniquement la bibliothèque standard Python pour OAuth et l’API Drive ; aucune dépendance supplémentaire n’est nécessaire. Le parcours conseillé utilise `--google-oauth-client CHEMIN --require-google-drive` à la construction, comme expliqué plus haut. Le fichier facultatif `Sources/PrepaPilot/assets/google-oauth-client.json` reste reconnu pour les projets déjà configurés ; il identifie seulement l’application. Les jetons d’utilisateur dans `data/cloud` ne sont jamais intégrés. Sans client, les fonctions locales restent accessibles et l’écran Google indique que l’éditeur doit préparer une version configurée. Les tests réseau utilisent des réponses simulées : ils ne remplacent pas une validation avec un compte Google autorisé après activation.
+Pour maintenir l’accès Google Drive, suis `Documentation/Google-Drive.md`. Le code utilise uniquement la bibliothèque standard Python pour OAuth et l’API Drive ; aucune dépendance supplémentaire n’est nécessaire. Le parcours conseillé utilise `--google-oauth-client CHEMIN --require-google-drive` à la construction, comme expliqué plus haut. Le fichier facultatif `Sources/PrepaPilot/assets/google-oauth-client.json` reste reconnu pour les projets déjà configurés ; il identifie seulement l’application. Les jetons d’utilisateur dans `data/cloud` ne sont jamais intégrés. Une construction volontairement dépourvue de client conserve les fonctions locales et indique que l’accès Google n’y est pas préparé. Les tests réseau automatisés utilisent des réponses simulées ; l’essai réel du 28 octobre 2026 est décrit plus haut et dans le guide Google Drive. Il ne remplace pas la vérification d’une nouvelle distribution ni l’essai restant sur un autre PC et avec un autre compte.
 
 `Outils/verifier_google.py` produit les captures de l’interface et du rappel avec un état fictif, sans réseau. Le contrôle compilé `--self-test` vérifie également ce dialogue et le rappel hebdomadaire sans ouvrir de connexion Google.
 

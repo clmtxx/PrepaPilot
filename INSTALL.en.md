@@ -2,7 +2,7 @@
 
 PrépaPilot helps you organise your studies: grades, documents, timetables, study sessions and personal progress. It runs on **64-bit Windows 10 (version 1809 or later) and Windows 11**. You do not need Python or administrator rights to use it.
 
-This guide covers **version 2.26.0 · 27 October 2026**. If you received **PrepaPilot-2.26.0-Setup.exe** directly, open that file and follow setup. On first launch, choose your language and set up your space. **Ctrl+F** searches documents, grades and personal notes, **Ctrl+K** opens quick actions, and **F1** opens offline help. Your study session remains within reach on every page.
+This guide covers **version 2.26.0 · final distribution prepared on 28 October 2026**. Source files are available at [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot); downloads will be available under **Releases** after the first release is published. If you received **PrepaPilot-2.26.0-Setup.exe** directly, open that file and follow setup. On first launch, choose your language and set up your space. **Ctrl+F** searches documents, grades and personal notes, **Ctrl+K** opens quick actions, and **F1** opens offline help. Your study session remains within reach on every page.
 
 In version 2.26, reflections and illustrations respond to the pointer across their whole card on every page. Progress keeps its existing colours and gradients. Buttons and fields stay in place; **Settings → Reduce animations** stops these movements.
 
@@ -67,7 +67,7 @@ Keep the old copy and your export until you have checked the transfer. A `.prepa
 
 ## Update the app
 
-When your copy is connected to the project's public repository, PrépaPilot checks for new releases at startup, at most once a day, and notifies you when an update is available. You can also open **Settings → Updates** and check manually.
+The final distribution is connected to the public repository `clmtxx/PrepaPilot`. PrépaPilot checks for new releases at startup, at most once a day, and notifies you when an update is available. You can also open **Settings → Updates** and check manually. A first stable public release must be published before a download can be offered.
 
 With the installed version, choose **Download and install**. The app downloads the release installer, checks its SHA-256 checksum and offers to close PrépaPilot before starting setup. Pause any running study session and save your changes first. The new installer replaces the program and keeps your grades, documents and preferences. **You do not need to uninstall the app.**
 
@@ -87,4 +87,4 @@ For the portable version, deleting its folder also deletes its data. Export your
 
 You can use all local features without a Google account. The publisher prepares Google's shared application configuration once and includes it in the installer. With a configured copy, open **Settings → Manage Google Drive backups → Sign in with Google**, choose your account in the browser and authorise PrépaPilot. You can then create or find your backup folder. Users do not need a Google Cloud project or a JSON file. Personal configurations remain available under **Advanced options** for those who need them.
 
-The local distributions of this project do not yet include a real Google application client, so the publisher must complete that preparation before Google access becomes available. No account is connected automatically. Use local `.prepapilot` exports to back up and move your workspace in the meantime. On another PC, use a copy prepared with the same Google application configuration and connect your own account again. The project's **Documentation** folder contains **Google-Drive.md** and **Guide-PrepaPilot.md**, currently in French, with further instructions.
+The final distribution includes the shared Google application client, with the Google app in production. A real sign-in, backup and restore were verified on 28 October 2026 using fictional study data. No account is connected automatically and Google remains optional: local `.prepapilot` exports can also back up and move your workspace. On another PC, use a copy prepared with the same Google application configuration and connect your own account again; a second computer and a different account have not yet been tested. The project's **Documentation** folder contains **Google-Drive.md** and **Guide-PrepaPilot.md**, currently in French. See also the bilingual [privacy notice](PRIVACY.md).

@@ -1,6 +1,6 @@
 # Installer PrépaPilot sur Windows
 
-PrépaPilot 2.26.0, préparé le 27 octobre 2026, est prévu pour **Windows 10 (1809 ou ultérieur) et Windows 11, 64 bits**. L’application fonctionne sans installer Python.
+PrépaPilot 2.26.0, livraison finale préparée le 28 octobre 2026, est prévu pour **Windows 10 (1809 ou ultérieur) et Windows 11, 64 bits**. L’application fonctionne sans installer Python. Les sources sont sur [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; les fichiers seront proposés dans **Releases** après publication de la première version.
 
 Si tu as reçu **PrepaPilot-2.26.0-Setup.exe** directement, ouvre ce fichier puis suis l’installation. Au premier lancement, choisis ta langue et configure ton espace. **Ctrl+F** recherche dans tes documents, notes et repères, **Ctrl+K** ouvre les actions rapides et **F1** affiche l’aide. Une séance reste accessible depuis tous les espaces.
 
@@ -57,7 +57,7 @@ Garde l’ancienne copie et l’export jusqu’à avoir vérifié le transfert. 
 
 ## Mettre à jour
 
-Dans une version reliée au dépôt public du projet, PrépaPilot recherche les nouvelles versions au démarrage, au plus une fois par jour, et affiche une notification lorsqu’une mise à jour est disponible. Tu peux aussi ouvrir **Réglages → Mises à jour** et lancer une recherche manuelle.
+La livraison finale est reliée au dépôt public `clmtxx/PrepaPilot`. PrépaPilot recherche les nouvelles versions au démarrage, au plus une fois par jour, et affiche une notification lorsqu’une mise à jour est disponible. Tu peux aussi ouvrir **Réglages → Mises à jour** et lancer une recherche manuelle. Une première Release publique stable est nécessaire pour proposer un téléchargement.
 
 Avec la version installée, clique sur **Télécharger et installer**. Le programme récupère l’installateur de la Release, vérifie son empreinte SHA-256, puis te propose de fermer PrépaPilot pour lancer l’installation. Mets d’abord une séance en cours en pause et enregistre tes modifications. Le nouvel installateur remplace le programme et conserve tes notes, documents et préférences. **Aucune désinstallation n’est nécessaire.**
 
@@ -77,4 +77,4 @@ Pour une version portable, supprimer son dossier supprime aussi ses données. Fa
 
 Les fonctions locales sont utilisables sans compte Google. L’éditeur prépare une seule fois l’accès commun à PrépaPilot et l’intègre au programme. Avec une version configurée, ouvre **Réglages → Gérer mes sauvegardes Google Drive → Se connecter à Google**, choisis ton compte dans le navigateur et autorise l’application. Tu peux ensuite créer ou retrouver ton dossier de sauvegarde. Tu n’as pas à créer de projet Google Cloud ni à importer de JSON ; les configurations personnelles restent dans **Options avancées** pour les usages qui le nécessitent.
 
-Les livrables locaux de ce projet ne contiennent pas encore de client Google réel : l’accès y reste à préparer par le distributeur. Aucun compte n’est connecté automatiquement. L’export local `.prepapilot` permet de sauvegarder et transférer ton espace entre-temps. Sur un autre PC, utilise une version préparée avec le même accès Google de PrépaPilot et reconnecte ton compte. Le [guide Google Drive](Documentation/Google-Drive.md) explique les étapes et l’état de l’activation.
+La livraison finale contient le client Google commun, activé en production. Le parcours réel de connexion, sauvegarde et restauration a été vérifié le 28 octobre 2026 avec des données fictives. Aucun compte n’est connecté automatiquement et Google reste facultatif : l’export local `.prepapilot` permet aussi de sauvegarder et transférer ton espace. Sur un autre PC, utilise une version préparée avec le même accès Google et reconnecte ton compte ; ce parcours entre deux machines et l’essai d’un autre compte restent à vérifier. Le [guide Google Drive](Documentation/Google-Drive.md) et la [notice de confidentialité](PRIVACY.md) donnent les détails.

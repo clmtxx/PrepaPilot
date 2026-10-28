@@ -1,4 +1,14 @@
-# Distribution Windows 2.26.0 — 27 octobre 2026
+# Distribution Windows 2.26.0 — état du 28 octobre 2026
+
+La livraison finale est préparée avec le dépôt public `clmtxx/PrepaPilot` et le client OAuth Google commun. L’application Google est en production, le secret GitHub de construction est enregistré et le parcours Google réel a réussi : connexion PKCE/DPAPI, sauvegarde de 14 objets, seconde sauvegarde sans nouvel envoi ni nouvelle version, restauration exacte des données et du document vers un espace fictif distinct. Les jetons de l’essai ont été effacés. Google reste facultatif ; aucun compte n’est connecté d’office. Un autre PC et un autre compte restent à tester.
+
+Les sources sont déjà sur `main`. **La première Release publique reste à publier** : ce rapport ne l’annonce pas comme disponible. Les diagnostics compilés français et anglais, le ZIP extrait et les parcours isolés d’installation, réinstallation 2.26.0 → 2.26.0, mise à jour 2.25.0 → 2.26.0 et désinstallation ont réussi sur la construction configurée. Les données fictives et la préférence anglaise ont été conservées.
+
+La campagne des sources compte **851 tests applicatifs, 23 tests des scripts et 33 tests d’outils réussis, plus 2 ignorés**, soit **909 contrôles distincts**. Les détails et empreintes historiques des installateurs testés sont dans [VERIFICATION-PUBLICATION.md](VERIFICATION-PUBLICATION.md). Les fichiers de la dernière reconstruction documentaire restent associés à leur propre `SHA256SUMS.txt`. Voir aussi [PRIVACY.md](PRIVACY.md).
+
+Les sections ci-dessous sont conservées comme historique : leurs mentions de préparation Google ou de publication manquante décrivent l’état à leur date.
+
+## Historique — distribution du 27 octobre 2026
 
 Le suivi souris est corrigé sur les sept pages, y compris au-dessus des textes et des contrôles. Les illustrations suivent leur carte ; les couleurs et dégradés de Progression sont conservés. Les 60 tests existants ciblés et les 8 nouveaux tests de suivi passent. Les 28 contrôles visuels produisent 11 artefacts sans erreur.
 

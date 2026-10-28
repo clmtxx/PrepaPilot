@@ -2,11 +2,11 @@
 
 PrépaPilot aide à organiser ses études : matières et notes, documents, emploi du temps, séances de travail et progression personnelle.
 
-**Version 2.26.0 · 27 octobre 2026 · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
+**Version 2.26.0 · livraison préparée le 28 octobre 2026 · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
 
 La version 2.26 étend le suivi de la souris à toutes les cartes : les reflets suivent le pointeur au-dessus des textes, champs et boutons, et les illustrations réagissent depuis toute leur carte. Progression conserve ses couleurs et ses dégradés ; les reflets reprennent chaque couleur d’accent. Les mouvements restent limités et respectent les animations réduites.
 
-Depuis la version 2.25, le parcours Google Drive est simplifié : l’éditeur prépare une seule fois l’accès commun à PrépaPilot, puis chaque utilisateur se connecte et autorise son compte, sans créer de projet Google Cloud ni importer de fichier JSON. La préparation des distributions peut intégrer et exiger cette configuration ; elle reste à fournir pour activer réellement Google dans les livrables locaux.
+La livraison finale intègre l’accès Google commun à PrépaPilot, activé en production et vérifié le 28 octobre 2026. Google Drive reste facultatif : chaque utilisateur connecte et autorise son propre compte, sans créer de projet Google Cloud ni importer de fichier JSON. Aucun compte n’est connecté d’office.
 
 Les transitions de pages directionnelles en profondeur, les notifications compactes avec copie du texte et pause de lecture, et le repère du champ actif de la version 2.24 sont conservés. Les couleurs équilibrées, le relief et les reflets restent présents. Les animations réduites permettent toujours d’ouvrir directement les pages.
 
@@ -14,7 +14,7 @@ Les transitions de pages directionnelles en profondeur, les notifications compac
 
 ## Installer sur Windows
 
-1. Ouvre **Releases** sur la page GitHub du projet.
+1. Ouvre **[Releases](https://github.com/clmtxx/PrepaPilot/releases)** sur le dépôt public du projet.
 2. Dans la dernière version publiée, télécharge **`PrepaPilot-2.26.0-Setup.exe`** sous **Assets**. Pour une version plus récente, choisis le fichier dont le nom se termine par **`-Setup.exe`**.
 3. Ouvre ce fichier et suis l’installation, puis lance **PrépaPilot** depuis le menu Démarrer.
 
@@ -26,17 +26,17 @@ Les liens **Source code (zip)** et **Source code (tar.gz)** contiennent le code 
 
 Les versions publiées par le workflow du projet recherchent les mises à jour au démarrage, au plus une fois par jour. Dans **Réglages → Mises à jour**, tu peux aussi rechercher une version et, avec la version installée, utiliser **Télécharger et installer**. L’installation remplace le programme en conservant tes données, sans désinstallation. Le portable donne accès à la page de téléchargement. Le [guide d’installation](INSTALLER.md#mettre-à-jour) détaille les étapes.
 
-**Première mise en ligne :** ce dossier prépare le dépôt et les fichiers à distribuer. Tant que son propriétaire n’a pas publié de version dans **Releases**, aucun téléchargement public de l’application n’est disponible. La marche à suivre se trouve dans [PUBLIER.md](PUBLIER.md).
+**État au 28 octobre 2026 :** les sources sont en ligne dans le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison est préparée avec ce dépôt pour les mises à jour et avec le client Google commun. La publication de la première **Release** reste l’étape de mise à disposition des téléchargements ; ce document ne l’annonce pas comme déjà publiée. La procédure se trouve dans [PUBLIER.md](PUBLIER.md).
 
 ## Données personnelles
 
 La [notice de confidentialité](PRIVACY.md) décrit le stockage local, les sauvegardes Google facultatives et les requêtes de mise à jour.
 
-Les données restent sur ton PC. La version installée les enregistre dans **`%LOCALAPPDATA%\PrepaPilot\data`**. La version portable utilise le dossier **`data`** à côté de son exécutable. Les deux modes ont donc des espaces séparés.
+Les données sont enregistrées sur ton PC. La version installée utilise **`%LOCALAPPDATA%\PrepaPilot\data`**. La version portable utilise le dossier **`data`** à côté de son exécutable. Les deux modes ont donc des espaces séparés ; une sauvegarde Google envoie les catégories que tu choisis vers ton Drive.
 
 Pour changer de PC ou passer du portable à l’installation : **Réglages → Exporter toutes mes données**, puis **Réglages → Importer mes données** dans la nouvelle installation. Le fichier `.prepapilot` transporte ton espace personnel ; garde-le pour toi.
 
-Google Drive reste facultatif. Avec une distribution configurée par l’éditeur, ouvre **Réglages → Gérer mes sauvegardes Google Drive → Se connecter à Google**, puis autorise ton propre compte dans le navigateur. Aucun client Google réel n’est encore fourni dans les livrables locaux de ce projet : si l’accès est indiqué comme non préparé, demande une version configurée au distributeur et utilise l’export local entre-temps. Voir le [guide Google Drive](Documentation/Google-Drive.md).
+Pour utiliser Google Drive, ouvre **Réglages → Gérer mes sauvegardes Google Drive → Se connecter à Google**, puis autorise ton propre compte dans le navigateur. Le 28 octobre 2026, une connexion réelle, une première sauvegarde, une seconde sans changement et une restauration exacte des données et documents ont réussi avec des données fictives. L’essai sur un autre PC et avec un autre compte reste à réaliser. Voir le [guide Google Drive](Documentation/Google-Drive.md).
 
 ## Publier ou faire évoluer le projet
 

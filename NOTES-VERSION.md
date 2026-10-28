@@ -1,4 +1,4 @@
-# PrépaPilot 2.26.0 — 27 octobre 2026
+# PrépaPilot 2.26.0 — livraison préparée le 28 octobre 2026
 
 ## Nouveautés
 
@@ -23,8 +23,8 @@ La version est disponible en français et en anglais, dans les deux thèmes, ave
 
 Les guides INSTALLER.md et INSTALL.en.md expliquent le premier lancement, les sauvegardes et le transfert entre modes. Une version portable et une version installée ont des espaces de données distincts : utilise l’export/import complet pour les transférer.
 
-Les fonctions locales sont utilisables immédiatement. Les mises à jour automatiques nécessiteront le futur dépôt public.
+Les fonctions locales sont utilisables immédiatement. La livraison finale utilise le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) pour les mises à jour ; une première Release publique stable doit être publiée avant qu’un téléchargement y soit disponible.
 
-**Google Drive n’est pas encore activé dans les livrables locaux :** aucun client réel n’est fourni à ce jour. L’éditeur doit terminer la préparation Google, intégrer ce client puis vérifier une connexion, une sauvegarde et une restauration réelles. La simplification du parcours ne connecte aucun compte et ne crée aucun dossier automatiquement. Les tests simulés ne remplacent pas cette validation.
+**Google Drive est préparé dans la livraison finale :** le client commun réel est intégré et l’application Google est en production. Le 28 octobre, une connexion réelle, une sauvegarde de 14 objets, une seconde sans nouvel envoi ni nouvelle version et une restauration exacte des données et documents ont réussi avec un espace fictif. Aucun compte n’est connecté automatiquement. Google reste facultatif ; chacun autorise son propre compte. Un autre PC et un autre compte restent à tester. La [notice de confidentialité](PRIVACY.md) décrit le stockage et les transferts.
 
-Pour publier par tag, renseigne **`GOOGLE_OAUTH_CLIENT_JSON`** dans les variables ou secrets GitHub avec le JSON du client d’application de bureau, sans jeton ni connexion personnelle. Une construction manuelle de développement peut rester sans Google. Le guide [PUBLIER.md](PUBLIER.md) explique la procédure.
+Le secret GitHub **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré pour la construction par tag, sans jeton ni connexion personnelle. Une construction manuelle de développement peut rester sans Google. Le guide [PUBLIER.md](PUBLIER.md) explique la mise à disposition de la Release ; ces notes ne l’annoncent pas comme déjà publiée.
