@@ -127,13 +127,93 @@ class ReleaseTests(unittest.TestCase):
         work = build_root / "release-example"
         work.mkdir(parents=True)
         (work / "scratch.txt").write_text("scratch", encoding="utf-8")
+        unrelated = build_root / "keep-example"
+        unrelated.mkdir()
+        nested = work / "release-nested"
+        nested.mkdir()
         with self.assertRaises(ValueError):
             release.safe_remove_work(self.app, build_root)
         with self.assertRaises(ValueError):
             release.safe_remove_work(build_root, build_root)
+        with self.assertRaises(ValueError):
+            release.safe_remove_work(unrelated, build_root)
+        with self.assertRaises(ValueError):
+            release.safe_remove_work(nested, build_root)
         self.assertTrue((self.app / "PrepaPilot.exe").is_file())
         release.safe_remove_work(work, build_root)
         self.assertFalse(work.exists())
+        self.assertTrue(unrelated.is_dir())
+
+    @unittest.skipUnless(release.sys.platform == "win32", "Windows 8.3 paths required")
+    def test_cleanup_accepts_windows_short_paths_for_root_or_work(self):
+        import ctypes
+
+        build_root = self.root / "Long temporary build directory" / "release work root"
+        work = build_root / "release-example-long-directory"
+        work.mkdir(parents=True)
+        sibling = build_root / "keep-this-directory"
+        sibling.mkdir()
+        sentinel = sibling / "keep.txt"
+        sentinel.write_text("keep", encoding="utf-8")
+
+        get_short_path = ctypes.WinDLL("kernel32", use_last_error=True).GetShortPathNameW
+        get_short_path.argtypes = (ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32)
+        get_short_path.restype = ctypes.c_uint32
+
+        def short_path(path):
+            size = get_short_path(str(path), None, 0)
+            if not size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            buffer = ctypes.create_unicode_buffer(size)
+            written = get_short_path(str(path), buffer, size)
+            if not written or written >= size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            return Path(buffer.value)
+
+        short_root, short_work = short_path(build_root), short_path(work)
+        if short_root == build_root.resolve():
+            self.skipTest("8.3 aliases are not enabled on this volume")
+        self.assertEqual(short_root.resolve(), build_root.resolve())
+        self.assertEqual(short_work.resolve(), work.resolve())
+        for target, root in ((short_root / work.name, build_root),
+                             (work, short_root), (short_work, short_root)):
+            with self.subTest(target=target, root=root):
+                work.mkdir(exist_ok=True)
+                (work / "scratch.txt").write_text("scratch", encoding="utf-8")
+                release.safe_remove_work(target, root)
+                self.assertFalse(work.exists())
+                self.assertEqual(sentinel.read_text(encoding="utf-8"), "keep")
+
+    @unittest.skipUnless(release.sys.platform == "win32", "Windows junctions required")
+    def test_cleanup_rejects_junctions_in_target_root_and_ancestors(self):
+        import _winapi
+
+        build_root = self.root / "real-parent" / "release-root"
+        work = build_root / "release-original"
+        work.mkdir(parents=True)
+        sentinel = work / "keep.txt"
+        sentinel.write_text("keep", encoding="utf-8")
+        target_link = build_root / "release-link"
+        root_link = self.root / "root-link"
+        parent_link = self.root / "parent-link"
+        links = []
+        try:
+            for target, link in ((work, target_link), (build_root, root_link),
+                                 (build_root.parent, parent_link)):
+                _winapi.CreateJunction(str(target), str(link))
+                links.append(link)
+                self.assertTrue(release.is_redirect(link))
+            for target, root in ((target_link, build_root),
+                                 (root_link / work.name, root_link),
+                                 (parent_link / build_root.name / work.name,
+                                  parent_link / build_root.name)):
+                with self.subTest(target=target, root=root):
+                    with self.assertRaisesRegex(ValueError, "redirection"):
+                        release.safe_remove_work(target, root)
+                    self.assertEqual(sentinel.read_text(encoding="utf-8"), "keep")
+        finally:
+            for link in reversed(links):
+                link.rmdir()
 
     def test_update_repository_is_a_public_github_identity(self):
         for repository in ('alice/PrepaPilot', 'a/b', 'a-b/project.name_1-2', 'a' * 39 + '/' + 'b' * 100):

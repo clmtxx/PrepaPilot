@@ -299,7 +299,9 @@ def safe_remove_work(work: Path, build_root: Path) -> None:
     """Delete only one verified temporary directory created by this builder."""
     root = ensure_plain_path(build_root)
     target = ensure_plain_path(work)
-    if target.parent != root or not target.name.startswith("release-") or target.resolve() != target:
+    # Expand Windows 8.3 aliases only after rejecting redirects in both paths.
+    root, target = root.resolve(), target.resolve()
+    if target.parent != root or not target.name.startswith("release-"):
         raise ValueError(f"Nettoyage refusé en dehors du dossier temporaire de construction : {target}")
     shutil.rmtree(target)
 
