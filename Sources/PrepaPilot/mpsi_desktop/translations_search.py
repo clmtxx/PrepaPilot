@@ -1,0 +1,20 @@
+"""English wording for local workspace search."""
+EN = {
+    'Tout': 'All',
+    'Document · {subject} · {name}': 'Document · {subject} · {name}',
+    'Évaluation sans titre': 'Untitled assessment',
+    'Note · {subject} · {score}/{scale} · {date}': 'Grade · {subject} · {score}/{scale} · {date}',
+    'Repère · {text}': 'Personal note · {text}',
+    'Rechercher dans mon espace': 'Search my space',
+    'Retrouve ce qui compte.': 'Find what matters.',
+    'Documents, notes et repères, réunis dans une recherche locale.': 'Documents, grades and personal notes in one local search.',
+    'Un titre, une matière, un mot-clé…': 'A title, a subject, a keyword…',
+    'Type de résultat': 'Result type',
+    'Les notes correspondent à l’année scolaire sélectionnée.': 'Grades are from the selected academic year.',
+    'Résultats de la recherche': 'Search results',
+    'Saisis un mot pour retrouver un document, une note ou un repère.': 'Enter a word to find a document, grade or personal note.',
+    'Recherche dans ton espace…': 'Searching your space…',
+    'La recherche n’a pas pu aboutir. Ferme cette fenêtre puis réessaie.': 'The search could not finish. Close this window and try again.',
+    'Aucun résultat. Essaie un autre mot ou élargis le filtre.': 'No results. Try another word or a broader filter.',
+    '{count} résultats affichés · affine ta recherche': '{count} results shown · refine your search',
+}

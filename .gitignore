@@ -1,0 +1,49 @@
+# Distributions locales : joindre les livrables aux GitHub Releases.
+/A-publier/
+/dist/
+/build/
+/.build/
+/.local/
+/Partage/
+/Application/
+*.exe
+*.dll
+*.pyd
+*.zip
+*.7z
+*.tar.gz
+
+# Données personnelles, exports, connexions et fichiers de travail.
+**/data/
+**/cloud/
+**/.document-staging/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+*.prepapilot
+*.log
+self-test-ok.txt
+.env
+.env.*
+!.env.example
+
+# Python et environnements locaux.
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.venv/
+**/venv/
+**/*.egg-info/
+.coverage
+htmlcov/
+
+# Fichiers locaux des éditeurs et de Windows.
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak
