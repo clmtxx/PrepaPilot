@@ -1,6 +1,6 @@
 # Distribution Windows 2.26.0 — état du 28 octobre 2026
 
-**Mise à jour du 29 octobre :** la [version 2.26.0 est publiée](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0). Le [compte rendu de publication](VERIFICATION-PUBLICATION.md) rassemble les vérifications finales. Le présent rapport conserve l’état et les essais du 28 octobre.
+**Mise à jour du 29 octobre :** la [version corrective 2.26.1 est publiée](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.1). Le [compte rendu de publication](VERIFICATION-PUBLICATION.md) rassemble les vérifications finales. Le présent rapport conserve l’état et les essais du 28 octobre.
 
 La livraison finale est préparée avec le dépôt public `clmtxx/PrepaPilot` et le client OAuth Google commun. L’application Google est en production, le secret GitHub de construction est enregistré et le parcours Google réel a réussi : connexion PKCE/DPAPI, sauvegarde de 14 objets, seconde sauvegarde sans nouvel envoi ni nouvelle version, restauration exacte des données et du document vers un espace fictif distinct. Les jetons de l’essai ont été effacés. Google reste facultatif ; aucun compte n’est connecté d’office. Un autre PC et un autre compte restent à tester.
 

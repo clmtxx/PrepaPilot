@@ -1,6 +1,6 @@
 # Mettre PrépaPilot à disposition sur GitHub
 
-La version Windows **2.26.0 a été publiée le 29 octobre 2026** : [téléchargements](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0). Le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) contient les sources sur `main`. Le client Google commun est en production, son secret de construction est enregistré dans GitHub et le parcours réel de sauvegarde/restauration a réussi. Ce guide conserve les étapes de première publication et sert de référence pour les prochaines versions.
+La version Windows **2.26.1 a été publiée le 29 octobre 2026** : [téléchargements](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.1). Le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) contient les sources sur `main`. Le client Google commun est en production, son secret de construction est enregistré dans GitHub et le parcours réel de sauvegarde/restauration a réussi. Ce guide conserve les étapes de première publication et sert de référence pour les prochaines versions.
 
 La publication automatique par tag exige l’accès Google commun valide. Les distributions finales sont construites avec `clmtxx/PrepaPilot` pour les mises à jour et le client OAuth de bureau commun, sans compte connecté. Google reste facultatif pour chaque utilisateur. La [notice de confidentialité](PRIVACY.md) décrit ces échanges.
 
@@ -46,7 +46,7 @@ Une publication par tag ajoute **`--require-google-drive`** : sans configuration
 2. Choisis **Windows — tests et distributions**.
 3. Clique sur **Run workflow**, choisis la branche principale, puis confirme **Run workflow**.
 4. Attends que l’exécution se termine avec succès. Ouvre son résultat et télécharge l’archive dans la rubrique **Artifacts**.
-5. Extrais cette archive. Pour la version 2.26.0, elle fournit **`PrepaPilot-2.26.0-Setup.exe`**, **`PrepaPilot-2.26.0-Windows-portable.zip`** et **`SHA256SUMS.txt`**.
+5. Extrais cette archive. Pour la version 2.26.1, elle fournit **`PrepaPilot-2.26.1-Setup.exe`**, **`PrepaPilot-2.26.1-Windows-portable.zip`** et **`SHA256SUMS.txt`**.
 
 Le bouton **Run workflow** apparaît quand le workflow est présent sur la branche par défaut du dépôt. Le lancement manuel est décrit dans la [documentation GitHub Actions](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
 
@@ -60,9 +60,9 @@ Le dossier local **`A-publier`** contient les fichiers Windows de la livraison f
 
 1. Essaie l’installateur sur un compte ou un PC Windows de test. Vérifie le lancement depuis le menu Démarrer, un export/import et la désinstallation. Vérifie aussi le lancement du portable après extraction complète.
 2. Dans le dépôt GitHub, ouvre **Releases → Draft a new release**.
-3. Dans **Choose a tag**, crée **`v2.26.0`** en ciblant la branche qui contient cette version.
-4. Donne le titre **PrépaPilot 2.26.0**. Dans la description, indique « Windows 64 bits — télécharger le fichier Setup.exe pour installer » et les changements utiles.
-5. Joins **`PrepaPilot-2.26.0-Setup.exe`**, le **ZIP portable** et **`SHA256SUMS.txt`** dans la zone des fichiers de la Release.
+3. Dans **Choose a tag**, crée **`v2.26.1`** en ciblant la branche qui contient cette version.
+4. Donne le titre **PrépaPilot 2.26.1**. Dans la description, indique « Windows 64 bits — télécharger le fichier Setup.exe pour installer » et les changements utiles.
+5. Joins **`PrepaPilot-2.26.1-Setup.exe`**, le **ZIP portable** et **`SHA256SUMS.txt`** dans la zone des fichiers de la Release.
 6. Vérifie que ces trois fichiers apparaissent, puis clique sur **Publish release**.
 
 Le [guide officiel des Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository?tool=webui) détaille ce formulaire. La création du tag peut aussi lancer la construction automatique : elle ajoute ou remplace les trois fichiers de cette même Release, en conservant son titre et sa description. Attends sa réussite avant de diffuser le lien. Si le tag a déjà été envoyé selon la section suivante, complète la Release existante.
@@ -92,7 +92,7 @@ Pour reconstruire localement, consulte les options de `scripts/build_release.py`
 Depuis la racine du dépôt, utilise par exemple :
 
 ```powershell
-python -B ./scripts/build_release.py --repository clmtxx/PrepaPilot --google-oauth-client 'C:/Configuration-PrepaPilot/client-google.json' --require-google-drive --expect-version 2.26.0
+python -B ./scripts/build_release.py --repository clmtxx/PrepaPilot --google-oauth-client 'C:/Configuration-PrepaPilot/client-google.json' --require-google-drive --expect-version 2.26.1
 ```
 
 Adapte le chemin à ton client Google de bureau et le numéro attendu pour une autre version. Le constructeur prépare ces informations dans une copie temporaire des ressources et ne modifie pas les sources. Pour une construction de développement sans Google, omets les deux options Google.

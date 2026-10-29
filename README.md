@@ -2,7 +2,7 @@
 
 PrépaPilot aide à organiser ses études : matières et notes, documents, emploi du temps, séances de travail et progression personnelle.
 
-**Version 2.26.1 en validation · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
+**Version 2.26.1 · publiée le 29 octobre 2026 · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
 
 La version 2.26 étend le suivi de la souris à toutes les cartes : les reflets suivent le pointeur au-dessus des textes, champs et boutons, et les illustrations réagissent depuis toute leur carte. Progression conserve ses couleurs et ses dégradés ; les reflets reprennent chaque couleur d’accent. Les mouvements restent limités et respectent les animations réduites.
 
@@ -15,7 +15,7 @@ Les transitions de pages directionnelles en profondeur, les notifications compac
 ## Installer sur Windows
 
 1. Ouvre **[Releases](https://github.com/clmtxx/PrepaPilot/releases)** sur le dépôt public du projet.
-2. Dans la dernière version publiée, télécharge **`PrepaPilot-2.26.0-Setup.exe`** sous **Assets**. Pour une version plus récente, choisis le fichier dont le nom se termine par **`-Setup.exe`**.
+2. Dans la dernière version publiée, télécharge **`PrepaPilot-2.26.1-Setup.exe`** sous **Assets**. Pour une version plus récente, choisis le fichier dont le nom se termine par **`-Setup.exe`**.
 3. Ouvre ce fichier et suis l’installation, puis lance **PrépaPilot** depuis le menu Démarrer.
 
 Python et les droits administrateur ne sont pas nécessaires. Le programme s’installe pour ton compte Windows. Le [guide d’installation](INSTALLER.md) explique aussi la version portable, les mises à jour et le transfert des données.
@@ -26,7 +26,7 @@ Les liens **Source code (zip)** et **Source code (tar.gz)** contiennent le code 
 
 Les versions publiées par le workflow du projet recherchent les mises à jour au démarrage, au plus une fois par jour. Dans **Réglages → Mises à jour**, tu peux aussi rechercher une version et, avec la version installée, utiliser **Télécharger et installer**. L’installation remplace le programme en conservant tes données, sans désinstallation. Le portable donne accès à la page de téléchargement. Le [guide d’installation](INSTALLER.md#mettre-à-jour) détaille les étapes.
 
-**Publication :** [PrépaPilot 2.26.0](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0) est publiée. Le correctif **2.26.1** corrige le téléchargement des mises à jour depuis GitHub et suit sa validation finale. Le lien [dernière version stable](https://github.com/clmtxx/PrepaPilot/releases/latest) permet de retrouver les téléchargements disponibles. Le dépôt officiel sert aux mises à jour et les distributions incluent le client Google commun, sans compte connecté. La procédure de publication se trouve dans [PUBLIER.md](PUBLIER.md).
+**Version stable :** [PrépaPilot 2.26.1](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.1) est publiée et corrige le téléchargement des mises à jour depuis GitHub. Les **913 contrôles GitHub**, la construction et la vérification de l’installateur ont réussi. Si tu utilises 2.26.0, télécharge cet installateur manuellement pour cette première mise à jour. Le lien [dernière version stable](https://github.com/clmtxx/PrepaPilot/releases/latest) permet de retrouver les prochaines publications. Les distributions incluent le client Google commun, sans compte connecté. La procédure se trouve dans [PUBLIER.md](PUBLIER.md).
 
 ## Données personnelles
 

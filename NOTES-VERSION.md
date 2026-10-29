@@ -1,4 +1,4 @@
-# PrépaPilot 2.26.1 — version corrective préparée le 29 octobre 2026
+# PrépaPilot 2.26.1 — version corrective publiée le 29 octobre 2026
 
 La version 2.26.1 corrige le téléchargement des mises à jour depuis GitHub. Le [rapport de publication](VERIFICATION-PUBLICATION.md) précise les vérifications finales ; les fichiers publiés sont accessibles sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest).
 
