@@ -15,7 +15,7 @@ class ProjectDistributionTests(TestCase):
     def setUp(self):
         self.temporary = TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
-        self.workspace = Path(self.temporary.name) / "Mon projet"
+        self.workspace = Path(self.temporary.name).resolve() / "Mon projet"
         self.workspace.mkdir()
         self.put("LIRE-MOI.md", "# Projet partageable\n")
         self.put(".gitignore", "data/\n__pycache__/\n")

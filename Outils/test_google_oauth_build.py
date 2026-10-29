@@ -17,7 +17,7 @@ CLIENT = {'installed': {'client_id': '123456789-publisher.apps.googleusercontent
 class PortableGoogleBuildTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
-        self.root = Path(self.temporary.name)
+        self.root = Path(self.temporary.name).resolve()
         self.assets = self.root / 'source-assets'
         self.assets.mkdir()
         (self.assets / 'app.ico').write_bytes(b'icon')

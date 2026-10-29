@@ -10,7 +10,7 @@ import preparer_github as github
 class GithubPreparationTests(TestCase):
     def test_only_selected_sources_and_guides_are_copied(self):
         with TemporaryDirectory() as directory:
-            workspace = Path(directory)
+            workspace = Path(directory).resolve()
             source = workspace / "Sources" / "PrepaPilot"
             (source / "assets").mkdir(parents=True)
             (source / "lancer.py").write_text("# public", encoding="utf-8")
@@ -41,7 +41,7 @@ class GithubPreparationTests(TestCase):
 
     def test_prepared_repository_cannot_create_nested_copies(self):
         with TemporaryDirectory() as directory:
-            workspace = Path(directory)
+            workspace = Path(directory).resolve()
             (workspace / "scripts").mkdir()
             (workspace / "scripts/build_release.py").write_text("# build", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "déjà"):

@@ -32,7 +32,7 @@ class FakeLock:
 class UpdateTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name) / "Projet PrépaPilot"
+        self.root = Path(self.temp.name).resolve() / "Projet PrépaPilot"
         self.local = updater.local_root(self.root)
         self.application = self.root / "Application" / "PrepaPilot"
         self.staging = self.local / "Livraison" / "PrepaPilot"

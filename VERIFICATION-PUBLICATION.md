@@ -39,6 +39,8 @@ Deux nouveaux tests vérifient les alias Windows 8.3 réels et les jonctions ré
 
 Les **53 tests ciblés de mises à jour** et les **42 tests de documents et de transferts** passent avec de vrais chemins temporaires Windows abrégés. Les deux nouveaux cas portent le périmètre applicatif à **853 tests distincts**. Le tableau consolide la campagne du 28 octobre et les contrôles ciblés du 29 octobre sans compter les répétitions. Le résultat de la construction GitHub finale est contrôlé séparément avant la fin de la publication.
 
+La campagne GitHub du correctif a ensuite confirmé **853/853 tests applicatifs** et **23/23 tests de distribution**. Les derniers problèmes concernaient uniquement les racines temporaires non canoniques de quatre fixtures des outils. Leurs sept échecs ont été reproduits avec un vrai chemin Windows 8.3, puis corrigés sans modifier les outils de production : la suite complète passe avec **33 réussites et deux contrôles de liens ignorés**, dans les sources historiques et la copie GitHub. La publication par tag exécute à nouveau les trois suites avant de construire ses fichiers Windows.
+
 ## Historique — premiers essais réels de l’installateur Windows
 
 Deux parcours ont réussi avec `scripts/verify_installer.ps1`, dans un répertoire de programme temporaire et un espace de données utilisateur isolé :
