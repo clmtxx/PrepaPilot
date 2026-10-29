@@ -99,7 +99,8 @@ def _validate_url(url: str, repository: str, kind: str, *, redirect=False):
                  and parsed.path.lower() == f'/repos/{repository}/releases/latest'.lower())
     elif redirect and parsed.hostname in ('release-assets.githubusercontent.com',
                                           'objects.githubusercontent.com'):
-        valid = parsed.path.startswith('/github-production-release-asset-')
+        valid = parsed.path.startswith(('/github-production-release-asset-',
+                                        '/github-production-release-asset/'))
     else:
         prefix = f'/{repository}/releases/download/'
         valid = (parsed.hostname == 'github.com' and not parsed.query

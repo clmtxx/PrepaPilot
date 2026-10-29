@@ -184,6 +184,41 @@ class AppUpdatesTests(unittest.TestCase):
                     'https://release-assets.githubusercontent.com/github-production-release-asset-x/file'):
             self.assert_code('invalid_release', handler.redirect_request, request, None, 302, 'Moved', {}, url)
 
+    def test_current_release_asset_redirect_and_final_signed_cdn_url_are_accepted(self):
+        initial = self.info().installer_url
+        handler = updates._SafeRedirects(REPOSITORY, 'asset')
+        for host in ('release-assets.githubusercontent.com', 'objects.githubusercontent.com'):
+            url = f'https://{host}/github-production-release-asset/123456789/fixture-asset?sig=fixture-only'
+            with self.subTest(host=host):
+                redirected = handler.redirect_request(Request(initial), None, 302, 'Moved', {}, url)
+                self.assertEqual(redirected.full_url, url)
+                response = Response(pe_content(), url=url)
+                opener = unittest.mock.Mock()
+                opener.open.return_value = response
+                with patch.object(updates, 'build_opener', return_value=opener):
+                    self.assertIs(updates._open(initial, REPOSITORY, 'asset'), response)
+                self.assertEqual(opener.open.call_args.args[0].full_url, initial)
+
+    def test_current_cdn_path_rejects_neighbors_initial_requests_and_api_redirects(self):
+        handler = updates._SafeRedirects(REPOSITORY, 'asset')
+        request = Request(self.info().installer_url)
+        for path in ('/github-production-release-asset', '/github-production-release-assets/1/file',
+                     '/github-production-release-assetx/1/file', '/github-production-release-asset.evil/1/file',
+                     '/github-production-repository-file/1/file', '/other/github-production-release-asset/1/file'):
+            with self.subTest(path=path):
+                self.assert_code('invalid_release', handler.redirect_request, request, None, 302, 'Moved', {},
+                                 'https://release-assets.githubusercontent.com' + path + '?sig=fixture-only')
+        api_handler = updates._SafeRedirects(REPOSITORY, 'api')
+        api_request = Request(f'https://api.github.com/repos/{REPOSITORY}/releases/latest')
+        for host in ('release-assets.githubusercontent.com', 'objects.githubusercontent.com'):
+            url = f'https://{host}/github-production-release-asset/123456789/fixture-asset?sig=fixture-only'
+            with self.subTest(host=host):
+                with patch.object(updates, 'build_opener') as opener:
+                    self.assert_code('invalid_release', updates._open, url, REPOSITORY, 'asset')
+                opener.assert_not_called()
+                self.assert_code('invalid_release', api_handler.redirect_request, api_request,
+                                 None, 302, 'Moved', {}, url)
+
     def test_requests_are_get_only_with_no_authentication_and_validate_final_url(self):
         info = self.info()
         opener = unittest.mock.Mock()

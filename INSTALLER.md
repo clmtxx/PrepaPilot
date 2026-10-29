@@ -1,8 +1,8 @@
 # Installer PrépaPilot sur Windows
 
-PrépaPilot 2.26.0, livraison finale préparée le 28 octobre 2026, est prévu pour **Windows 10 (1809 ou ultérieur) et Windows 11, 64 bits**. L’application fonctionne sans installer Python. Les sources sont sur [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; les fichiers seront proposés dans **Releases** après publication de la première version.
+PrépaPilot 2.26.1, version corrective préparée le 29 octobre 2026, est prévu pour **Windows 10 (1809 ou ultérieur) et Windows 11, 64 bits**. L’application fonctionne sans installer Python. Les sources sont sur [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; les fichiers publiés se trouvent sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest). Le [rapport de publication](VERIFICATION-PUBLICATION.md) précise les vérifications de chaque livraison.
 
-Si tu as reçu **PrepaPilot-2.26.0-Setup.exe** directement, ouvre ce fichier puis suis l’installation. Au premier lancement, choisis ta langue et configure ton espace. **Ctrl+F** recherche dans tes documents, notes et repères, **Ctrl+K** ouvre les actions rapides et **F1** affiche l’aide. Une séance reste accessible depuis tous les espaces.
+Si tu as reçu **PrepaPilot-2.26.1-Setup.exe** directement, ouvre ce fichier puis suis l’installation. Au premier lancement, choisis ta langue et configure ton espace. **Ctrl+F** recherche dans tes documents, notes et repères, **Ctrl+K** ouvre les actions rapides et **F1** affiche l’aide. Une séance reste accessible depuis tous les espaces.
 
 Dans la version 2.26, les reflets et les illustrations suivent la souris depuis toute leur carte, dans chaque espace. Les couleurs et dégradés de Progression sont conservés. Les boutons et champs restent à leur place ; **Réglages → Réduire les animations** arrête ces mouvements.
 
@@ -14,9 +14,9 @@ Reviens ensuite dans le dialogue : **Lire la proposition** affiche les changemen
 
 ## Installation conseillée
 
-1. Ouvre la page GitHub de PrépaPilot, puis **Releases**.
+1. Ouvre la page [dernière version de PrépaPilot](https://github.com/clmtxx/PrepaPilot/releases/latest).
 2. Ouvre la dernière version et déplie **Assets** si nécessaire.
-3. Télécharge **`PrepaPilot-2.26.0-Setup.exe`**, ou le fichier **`-Setup.exe`** de la version plus récente affichée.
+3. Télécharge **`PrepaPilot-2.26.1-Setup.exe`**, ou le fichier **`-Setup.exe`** de la version plus récente affichée.
 4. Double-clique sur le fichier téléchargé et suis les étapes.
 5. Lance **PrépaPilot** depuis le menu Démarrer. Au premier lancement, configure ton espace.
 
@@ -30,7 +30,7 @@ L’installateur n’est pas signé avec un certificat d’éditeur. Windows peu
 
 La Release propose aussi une archive ZIP portable :
 
-1. Télécharge **`PrepaPilot-2.26.0-Windows-portable.zip`**, ou le ZIP portable de la version plus récente affichée.
+1. Télécharge **`PrepaPilot-2.26.1-Windows-portable.zip`**, ou le ZIP portable de la version plus récente affichée.
 2. Dans l’Explorateur Windows, clique droit sur le ZIP, puis **Extraire tout**.
 3. Ouvre le dossier extrait et double-clique sur **`PrepaPilot.exe`**.
 
@@ -57,7 +57,7 @@ Garde l’ancienne copie et l’export jusqu’à avoir vérifié le transfert. 
 
 ## Mettre à jour
 
-La livraison finale est reliée au dépôt public `clmtxx/PrepaPilot`. PrépaPilot recherche les nouvelles versions au démarrage, au plus une fois par jour, et affiche une notification lorsqu’une mise à jour est disponible. Tu peux aussi ouvrir **Réglages → Mises à jour** et lancer une recherche manuelle. Une première Release publique stable est nécessaire pour proposer un téléchargement.
+La livraison finale est reliée au dépôt public `clmtxx/PrepaPilot`. PrépaPilot recherche les nouvelles versions au démarrage, au plus une fois par jour, et affiche une notification lorsqu’une mise à jour est disponible. Tu peux aussi ouvrir **Réglages → Mises à jour** et lancer une recherche manuelle. La version 2.26.1 corrige le téléchargement depuis l’hébergement actuel de GitHub.
 
 Avec la version installée, clique sur **Télécharger et installer**. Le programme récupère l’installateur de la Release, vérifie son empreinte SHA-256, puis te propose de fermer PrépaPilot pour lancer l’installation. Mets d’abord une séance en cours en pause et enregistre tes modifications. Le nouvel installateur remplace le programme et conserve tes notes, documents et préférences. **Aucune désinstallation n’est nécessaire.**
 
@@ -65,7 +65,7 @@ Tu peux toujours télécharger le nouvel installateur depuis **Releases**, ferme
 
 Le portable peut rechercher les versions et ouvrir la page **Releases**. Télécharge le nouveau ZIP portable, extrais-le dans un nouveau dossier, puis utilise l’export et l’import décrits ci-dessus. Garde l’ancien dossier jusqu’à la vérification.
 
-Si l’écran indique que le dépôt de mises à jour n’est pas encore configuré, utilise les fichiers transmis par l’éditeur. Les versions construites par le workflow GitHub du projet reçoivent automatiquement l’adresse du dépôt ; la première Release publique doit avoir été publiée pour qu’une version soit disponible.
+Si l’écran indique que le dépôt de mises à jour n’est pas encore configuré, utilise les fichiers transmis par l’éditeur. Les versions construites par le workflow GitHub du projet reçoivent automatiquement l’adresse du dépôt.
 
 ## Désinstaller
 

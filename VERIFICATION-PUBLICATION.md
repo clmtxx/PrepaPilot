@@ -1,14 +1,24 @@
-# Vérifications avant publication — 29 octobre 2026
+# Vérifications de publication — 29 octobre 2026
 
-Ce compte rendu complète les rapports historiques de [vérification de l’application](Sources/PrepaPilot/VERIFICATION.md) et de [distribution Windows](VERIFICATION-DISTRIBUTION.md). Il décrit les contrôles réalisés le 28 octobre 2026 sur les sources, les installateurs locaux **2.26.0** et un parcours Google réel. Les sources sont sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; **la première Release n’est pas annoncée comme publiée** par ce compte rendu.
+Ce compte rendu complète les rapports historiques de [vérification de l’application](Sources/PrepaPilot/VERIFICATION.md) et de [distribution Windows](VERIFICATION-DISTRIBUTION.md). Il décrit les contrôles réalisés les 28 et 29 octobre 2026 sur les sources, les installateurs locaux **2.26.0** et un parcours Google réel. Les sources sont sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) et la [Release 2.26.0](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0) a été publiée le 29 octobre.
 
 ## État actuel — Google et distribution configurés
+
+### Correctif 2.26.1 — téléchargement GitHub
+
+La [construction par tag de 2.26.0](https://github.com/clmtxx/PrepaPilot/actions/runs/40850546992) a réussi : **911 tests sur 911**, construction Windows, diagnostics et vérification réelle de l’installateur, puis ajout des trois fichiers à la Release. Le test public a ensuite détecté correctement la version mais refusé le téléchargement : GitHub utilise désormais le chemin CDN `/github-production-release-asset/`, alors que le validateur n’acceptait que son ancien préfixe.
+
+La version corrective **2.26.1** ajoute ce préfixe sur les deux hôtes CDN GitHub déjà autorisés, uniquement après une redirection provenant du dépôt configuré. Les contrôles HTTPS, de domaine, de taille, d’empreinte et de format de l’installateur restent actifs. Les URL CDN initiales et les redirections de l’API vers un CDN restent interdites. Les vérifications de cette version corrective sont consignées séparément avant son passage en version stable.
+
+Le nouveau cas a reproduit le refus avant correction. Après correction, **40 tests ciblés** passent : 24 du moteur de mises à jour, quatre d’intégration et douze d’interface. Le moteur corrigé a ensuite téléchargé réellement la Release 2.26.0 : détection depuis 2.25.0, taille, SHA-256 et format du Setup, préparation sans lancement, puis taille, SHA-256 et CRC du ZIP, canal et présence du client applicatif commun. Les fichiers publics 2.26.0 n’ont pas été modifiés par cet essai. Les deux nouveaux tests portent le périmètre applicatif de 2.26.1 à **855 tests**, soit **913 contrôles** avec les scripts et les outils.
+
+### Vérifications Google et constructions 2.26.0
 
 Le client OAuth de bureau commun est créé, l’application Google est **en production** et le secret GitHub Actions **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré. Les distributions finales reçoivent ce client et `clmtxx/PrepaPilot` comme canal de mises à jour. Google reste facultatif et aucun compte n’est connecté d’office. La [notice de confidentialité](PRIVACY.md) décrit le stockage, les sauvegardes et les requêtes réseau.
 
 Un parcours avec un vrai compte Google et uniquement des données applicatives fictives a réussi : connexion OAuth avec PKCE et protection locale DPAPI des jetons ; première sauvegarde de **14 objets** ; seconde sauvegarde avec **0 envoi et 14 objets réutilisés**, sans nouvelle version ; restauration des données et du document avec comparaison exacte vers un espace local distinct. Les jetons de l’essai ont été effacés. L’essai sur un autre ordinateur et avec un autre compte reste à effectuer.
 
-Une première construction configurée a passé les diagnostics compilés français et anglais, les mêmes diagnostics depuis le ZIP extrait, la réinstallation 2.26.0 → 2.26.0 et la mise à jour 2.25.0 → 2.26.0 avec conservation des données fictives. L’installateur de cet essai porte l’empreinte SHA-256 `ac5526074dd47542096f21f4167efcf1b3e3ee38a134bc343995b9243675ee8e`. Une dernière reconstruction documentaire embarque le guide actualisé ; les empreintes à diffuser sont celles du **`SHA256SUMS.txt` de cette dernière construction**, et non une empreinte historique de ce rapport.
+Une première construction configurée a passé les diagnostics compilés français et anglais, les mêmes diagnostics depuis le ZIP extrait, la réinstallation 2.26.0 → 2.26.0 et la mise à jour 2.25.0 → 2.26.0 avec conservation des données fictives. L’installateur de cet essai porte l’empreinte SHA-256 `ac5526074dd47542096f21f4167efcf1b3e3ee38a134bc343995b9243675ee8e`. Ces parcours ont été répétés avec succès sur la construction locale finale du 29 octobre, après le correctif de chemins Windows, avec l’empreinte `f6ec40158dae4f75cad0da7e2d68bdc6f2db0fd3b1f34d8078360be0a4e50244`. Les empreintes à diffuser sont toujours celles du **`SHA256SUMS.txt` associé aux fichiers de la Release**, chaque construction ayant ses propres empreintes.
 
 ## Tests des sources
 
@@ -58,10 +68,10 @@ c17b0ffccea0249e7596647fa5265f87abbd92120de94b33eec265d4fdfc21cc
 
 Les anciens rapports indiquant que l’installation ou la désinstallation n’avaient pas été exécutées décrivent leur validation à leur date. Les deux parcours ci-dessus apportent cette validation supplémentaire pour ce fichier précis.
 
-## Portée et étapes suivantes
+## Portée et preuves locales
 
 Les preuves locales sont conservées dans `.local/Verification/Publication-2026-10-28` : `bilan-tests-final.json` décrit la campagne initiale de 907 contrôles ; `test-ci-short-path-before.log` reproduit le refus avant correctif et `tests-scripts-ci-short-path-final.log` consigne les 23 tests du constructeur corrigé. Les journaux d’application, d’outils et les deux journaux d’installation sont conservés au même endroit. Les résultats détaillés de l’installateur sont dans ses répertoires temporaires `.build/installer-tests`. Ces preuves locales ne sont pas nécessaires à l’utilisation de l’application.
 
-Les échanges Google et GitHub des tests automatisés restent simulés ; le parcours Google réel séparé est décrit en début de document. Aucun téléchargement depuis une Release publique ni aucune campagne sur plusieurs ordinateurs ne sont validés par ces essais.
+Les échanges Google et GitHub des tests automatisés restent simulés ; le parcours Google réel séparé est décrit en début de document. Ces essais ne constituent pas une campagne sur plusieurs ordinateurs.
 
-La dernière reconstruction documentaire doit passer les diagnostics compilés français et anglais puis ceux du ZIP extrait ; ses nouvelles empreintes accompagnent les fichiers. Les essais d’installation de la construction configurée précédente restent identifiés ci-dessus ; le workflow CI vérifie à nouveau l’installateur qu’il produit. La première Release publique permettra ensuite de vérifier le canal réel de mises à jour.
+La construction locale finale du 29 octobre a passé les diagnostics compilés français et anglais, puis les mêmes diagnostics depuis le ZIP extrait. Le ZIP a passé ses contrôles de CRC, d’empreintes, de canal de mises à jour et d’absence de données personnelles. La copie portable de travail a été actualisée à partir de ce ZIP ; les empreintes de ses trois fichiers de données sont identiques avant et après. Ces preuves sont distinctes de celles de la construction GitHub et du téléchargement public.

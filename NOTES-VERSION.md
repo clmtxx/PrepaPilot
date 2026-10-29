@@ -1,6 +1,12 @@
-# PrépaPilot 2.26.0 — livraison préparée le 28 octobre 2026
+# PrépaPilot 2.26.1 — version corrective préparée le 29 octobre 2026
 
-## Nouveautés
+La version 2.26.1 corrige le téléchargement des mises à jour depuis GitHub. Le [rapport de publication](VERIFICATION-PUBLICATION.md) précise les vérifications finales ; les fichiers publiés sont accessibles sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest).
+
+## Correctif 2.26.1
+
+Le téléchargement accepte le format actuel d’hébergement des fichiers GitHub. Les contrôles du fichier téléchargé, notamment son empreinte SHA-256, restent appliqués.
+
+## Nouveautés 2.26
 
 - **Un suivi du pointeur dans tous les espaces :** les reflets lumineux réagissent sur toute la carte, y compris lorsque la souris passe sur un texte, un champ ou un bouton.
 - **Les couleurs de Progression conservées :** le travail, le sommeil, le sport et le repos gardent leurs palettes et dégradés. Chaque reflet utilise la couleur d’accent de sa carte.
@@ -17,14 +23,14 @@ La version est disponible en français et en anglais, dans les deux thèmes, ave
 
 ## Fichiers Windows
 
-- **PrepaPilot-2.26.0-Setup.exe** : installation pour le compte Windows, sans Python ni droits administrateur.
-- **PrepaPilot-2.26.0-Windows-portable.zip** : extraire tout le dossier avant d’ouvrir PrepaPilot.exe.
+- **PrepaPilot-2.26.1-Setup.exe** : installation pour le compte Windows, sans Python ni droits administrateur.
+- **PrepaPilot-2.26.1-Windows-portable.zip** : extraire tout le dossier avant d’ouvrir PrepaPilot.exe.
 - **SHA256SUMS.txt** : empreintes des deux fichiers.
 
 Les guides INSTALLER.md et INSTALL.en.md expliquent le premier lancement, les sauvegardes et le transfert entre modes. Une version portable et une version installée ont des espaces de données distincts : utilise l’export/import complet pour les transférer.
 
-Les fonctions locales sont utilisables immédiatement. La livraison finale utilise le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) pour les mises à jour ; une première Release publique stable doit être publiée avant qu’un téléchargement y soit disponible.
+Les fonctions locales sont utilisables immédiatement. La livraison utilise le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) pour les mises à jour ; retrouve les versions stables sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest).
 
 **Google Drive est préparé dans la livraison finale :** le client commun réel est intégré et l’application Google est en production. Le 28 octobre, une connexion réelle, une sauvegarde de 14 objets, une seconde sans nouvel envoi ni nouvelle version et une restauration exacte des données et documents ont réussi avec un espace fictif. Aucun compte n’est connecté automatiquement. Google reste facultatif ; chacun autorise son propre compte. Un autre PC et un autre compte restent à tester. La [notice de confidentialité](PRIVACY.md) décrit le stockage et les transferts.
 
-Le secret GitHub **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré pour la construction par tag, sans jeton ni connexion personnelle. Une construction manuelle de développement peut rester sans Google. Le guide [PUBLIER.md](PUBLIER.md) explique la mise à disposition de la Release ; ces notes ne l’annoncent pas comme déjà publiée.
+Le secret GitHub **`GOOGLE_OAUTH_CLIENT_JSON`** est enregistré pour la construction par tag, sans jeton ni connexion personnelle. Une construction manuelle de développement peut rester sans Google. Le guide [PUBLIER.md](PUBLIER.md) explique le processus de publication et les prochaines versions.

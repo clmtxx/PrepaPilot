@@ -4,7 +4,7 @@ L’application compilée fonctionne sans Python. Cette page concerne la modific
 
 ## Construire la distribution GitHub
 
-Le dossier **PrepaPilot-GitHub** est autonome : son README est l’entrée du dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot), dont les sources ont été envoyées sur `main` le 28 octobre 2026. L’envoi des sources ne constitue pas à lui seul la publication d’une Release. Depuis sa racine, utilise Python 3.12 64 bits et [Inno Setup 6.3 ou ultérieur](https://jrsoftware.org/isdl.php) :
+Le dossier **PrepaPilot-GitHub** est autonome : son README est l’entrée du dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot), dont les sources ont été envoyées sur `main` le 28 octobre 2026. La version corrective **2.26.1** est préparée le 29 octobre pour corriger le téléchargement des mises à jour. Les fichiers publiés se trouvent sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest) ; le [rapport de publication](https://github.com/clmtxx/PrepaPilot/blob/main/VERIFICATION-PUBLICATION.md) précise leurs vérifications. Depuis sa racine, utilise Python 3.12 64 bits et [Inno Setup 6.3 ou ultérieur](https://jrsoftware.org/isdl.php) :
 
 ```powershell
 py -3.12 -m venv .venv
@@ -36,7 +36,7 @@ Le fichier intégré identifie l’application, et non un compte déjà connect�
 
 Dans le workflow GitHub, les publications par tag exigent cette configuration ; les constructions manuelles de développement peuvent l’omettre. **État vérifié le 28 octobre 2026 :** le client OAuth de bureau commun est créé, l’application Google est En production et `GOOGLE_OAUTH_CLIENT_JSON` est enregistré comme secret du dépôt `clmtxx/PrepaPilot`. Ce secret contient la configuration du client, jamais les jetons d’un utilisateur. Pour une autre configuration, fournis ce JSON dans les variables ou secrets attendus par le workflow.
 
-Un essai réel avec des données fictives a réussi : connexion PKCE, protection locale DPAPI, première sauvegarde de 14 objets, seconde sauvegarde sans envoi avec 14 objets réutilisés et aucune nouvelle version, puis restauration exacte des données et documents dans un espace distinct. Les jetons de l’essai ont été effacés. L’essai sur un autre PC et avec un autre compte reste à effectuer. La prochaine construction intégrant le dépôt et le client Google doit être revérifiée avant diffusion ; ces contrôles ne constituent pas une Release publiée.
+Un essai réel avec des données fictives a réussi : connexion PKCE, protection locale DPAPI, première sauvegarde de 14 objets, seconde sauvegarde sans envoi avec 14 objets réutilisés et aucune nouvelle version, puis restauration exacte des données et documents dans un espace distinct. Les jetons de l’essai ont été effacés. L’essai sur un autre PC et avec un autre compte reste à effectuer. Toute nouvelle construction doit être vérifiée avant diffusion. Ces contrôles Google sont distincts des contrôles de construction et de téléchargement de chaque version, consignés dans le rapport de publication.
 
 Google Drive reste facultatif. Aucun compte n’est connecté d’office dans une distribution ; chaque utilisateur autorise son propre compte. Les [informations de confidentialité](https://github.com/clmtxx/PrepaPilot/blob/main/PRIVACY.md) décrivent les données transférées et leur conservation.
 

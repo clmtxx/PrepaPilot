@@ -1,14 +1,14 @@
 # PrépaPilot
 
-**Version 2.26.0**
+**Version 2.26.1**
 
-**Livraison finale préparée le 28 octobre 2026 :** les sources sont disponibles sur [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison est configurée pour ce dépôt et pour Google Drive ; la première Release publique reste à publier pour proposer les téléchargements. Aucun compte Google n’est connecté d’office.
+La version 2.26.1 corrige le téléchargement des mises à jour depuis GitHub. Retrouve les fichiers Windows publiés sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest). La distribution utilise le dépôt officiel `clmtxx/PrepaPilot` et le client Google commun, activé en production. Google reste facultatif et aucun compte n’est connecté d’office.
 
 PrépaPilot est une application Windows, disponible avec un installateur et en version portable, pour organiser tes études : notes, documents, repères personnels et temps consacré à tes activités. Elle s’adapte à tes matières et à ton parcours, au lycée, en licence, en BTS, en prépa ou dans une autre formation. Le nom PrépaPilot est conservé pour le moment.
 
 ## Ouvrir l’application
 
-Depuis **Releases** sur le dépôt GitHub du projet, télécharge le fichier dont le nom se termine par **`-Setup.exe`**, ouvre-le et suis l’installation. Tu pourras ensuite lancer **PrépaPilot** depuis le menu Démarrer. Python n’est pas nécessaire. Le dossier **PrepaPilot-GitHub** contient le projet prêt pour cette distribution ; son fichier `PUBLIER.md` explique la première publication.
+Depuis la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest) du projet, télécharge le fichier dont le nom se termine par **`-Setup.exe`**, ouvre-le et suis l’installation. Tu pourras ensuite lancer **PrépaPilot** depuis le menu Démarrer. Python n’est pas nécessaire. Le dossier **PrepaPilot-GitHub** contient le projet de cette distribution ; son fichier `PUBLIER.md` explique la publication des versions.
 
 Si tu choisis l’archive portable, extrais-la entièrement puis ouvre `PrepaPilot/PrepaPilot.exe`. Garde le dossier `PrepaPilot` complet, avec son sous-dossier `_internal`.
 

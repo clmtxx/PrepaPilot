@@ -1,6 +1,6 @@
 # Mettre PrépaPilot à disposition sur GitHub
 
-Ce dossier rassemble les sources et les distributions Windows **2.26.0 préparées le 28 octobre 2026**. Le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) contient déjà les sources sur `main`. Le client Google commun est en production, son secret de construction est enregistré dans GitHub et le parcours réel de sauvegarde/restauration a réussi. **La première Release reste à publier** pour rendre les téléchargements disponibles ; cette préparation ne vaut pas publication.
+La version Windows **2.26.0 a été publiée le 29 octobre 2026** : [téléchargements](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0). Le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) contient les sources sur `main`. Le client Google commun est en production, son secret de construction est enregistré dans GitHub et le parcours réel de sauvegarde/restauration a réussi. Ce guide conserve les étapes de première publication et sert de référence pour les prochaines versions.
 
 La publication automatique par tag exige l’accès Google commun valide. Les distributions finales sont construites avec `clmtxx/PrepaPilot` pour les mises à jour et le client OAuth de bureau commun, sans compte connecté. Google reste facultatif pour chaque utilisateur. La [notice de confidentialité](PRIVACY.md) décrit ces échanges.
 

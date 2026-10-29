@@ -2,7 +2,7 @@
 
 PrépaPilot helps you organise your studies: grades, documents, timetables, study sessions and personal progress. It runs on **64-bit Windows 10 (version 1809 or later) and Windows 11**. You do not need Python or administrator rights to use it.
 
-This guide covers **version 2.26.0 · final distribution prepared on 28 October 2026**. Source files are available at [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot); downloads will be available under **Releases** after the first release is published. If you received **PrepaPilot-2.26.0-Setup.exe** directly, open that file and follow setup. On first launch, choose your language and set up your space. **Ctrl+F** searches documents, grades and personal notes, **Ctrl+K** opens quick actions, and **F1** opens offline help. Your study session remains within reach on every page.
+This guide covers **version 2.26.1 · corrective distribution prepared on 29 October 2026**. Source files are available at [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot); published downloads are available on the [latest release](https://github.com/clmtxx/PrepaPilot/releases/latest) page. The [publication report](VERIFICATION-PUBLICATION.md), in French, records verification for each distribution. If you received **PrepaPilot-2.26.1-Setup.exe** directly, open that file and follow setup. On first launch, choose your language and set up your space. **Ctrl+F** searches documents, grades and personal notes, **Ctrl+K** opens quick actions, and **F1** opens offline help. Your study session remains within reach on every page.
 
 In version 2.26, reflections and illustrations respond to the pointer across their whole card on every page. Progress keeps its existing colours and gradients. Buttons and fields stay in place; **Settings → Reduce animations** stops these movements.
 
@@ -16,7 +16,7 @@ PrépaPilot bundles no AI model and sends no courses through this workflow. Whet
 
 ## Recommended installation
 
-1. On the project's GitHub page, open **Releases**.
+1. Open the project’s [latest release](https://github.com/clmtxx/PrepaPilot/releases/latest) page.
 2. Open the latest release and expand **Assets** if needed.
 3. Download the file whose name ends in **`-Setup.exe`**.
 4. Open the downloaded file and follow the setup instructions. The installer is available in English and French.
@@ -67,7 +67,7 @@ Keep the old copy and your export until you have checked the transfer. A `.prepa
 
 ## Update the app
 
-The final distribution is connected to the public repository `clmtxx/PrepaPilot`. PrépaPilot checks for new releases at startup, at most once a day, and notifies you when an update is available. You can also open **Settings → Updates** and check manually. A first stable public release must be published before a download can be offered.
+The final distribution is connected to the public repository `clmtxx/PrepaPilot`. PrépaPilot checks for new releases at startup, at most once a day, and notifies you when an update is available. You can also open **Settings → Updates** and check manually. Version 2.26.1 corrects downloads from GitHub’s current file hosting.
 
 With the installed version, choose **Download and install**. The app downloads the release installer, checks its SHA-256 checksum and offers to close PrépaPilot before starting setup. Pause any running study session and save your changes first. The new installer replaces the program and keeps your grades, documents and preferences. **You do not need to uninstall the app.**
 
@@ -75,7 +75,7 @@ You can still download the latest installer from **Releases**, close the app and
 
 The portable version can check for updates and open the **Releases** page. Download the new portable ZIP, extract it into a new folder, then use the export and import steps above. Keep the old folder until you have checked the new copy.
 
-If the app says its update repository has not been configured, use the files provided by the publisher. Builds produced by the project's GitHub workflow receive their repository address automatically; a first public release must be published before an update can be found.
+If the app says its update repository has not been configured, use the files provided by the publisher. Builds produced by the project's GitHub workflow receive their repository address automatically.
 
 ## Uninstall
 

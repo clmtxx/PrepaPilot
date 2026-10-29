@@ -1,4 +1,12 @@
-# Vérification de PrépaPilot 2.26.0 — état du 28 octobre 2026
+# Vérification de PrépaPilot 2.26.1 — état du 29 octobre 2026
+
+## Livraison corrective du 29 octobre 2026
+
+La version corrective **2.26.1** est préparée pour le téléchargement des mises à jour depuis GitHub. La version 2.26.0 a été publiée le 29 octobre ; son test de téléchargement réel a révélé le refus du format actuel d’hébergement des fichiers GitHub. Les contrôles de taille et d’empreinte restent requis.
+
+Le [rapport de publication](https://github.com/clmtxx/PrepaPilot/blob/main/VERIFICATION-PUBLICATION.md) donne le résultat des vérifications de construction, d’installation et de téléchargement de chaque livraison. La réussite finale de la version 2.26.1 n’est pas annoncée ici. Les fichiers publiés se trouvent sur la page [dernière version](https://github.com/clmtxx/PrepaPilot/releases/latest). Google reste facultatif, avec son client commun en production et aucun compte connecté d’office.
+
+## Historique — état du 28 octobre 2026
 
 Les sources sont disponibles sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison finale est préparée avec ce dépôt pour les mises à jour et avec le client Google commun, activé en production. Le secret de construction GitHub est enregistré. La première Release publique reste à publier ; les sections historiques ci-dessous décrivent l’état à leur date.
 

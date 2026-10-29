@@ -2,7 +2,7 @@
 
 PrépaPilot aide à organiser ses études : matières et notes, documents, emploi du temps, séances de travail et progression personnelle.
 
-**Version 2.26.0 · livraison préparée le 28 octobre 2026 · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
+**Version 2.26.1 en validation · Windows 10 (1809 ou ultérieur) et Windows 11 · 64 bits**
 
 La version 2.26 étend le suivi de la souris à toutes les cartes : les reflets suivent le pointeur au-dessus des textes, champs et boutons, et les illustrations réagissent depuis toute leur carte. Progression conserve ses couleurs et ses dégradés ; les reflets reprennent chaque couleur d’accent. Les mouvements restent limités et respectent les animations réduites.
 
@@ -26,7 +26,7 @@ Les liens **Source code (zip)** et **Source code (tar.gz)** contiennent le code 
 
 Les versions publiées par le workflow du projet recherchent les mises à jour au démarrage, au plus une fois par jour. Dans **Réglages → Mises à jour**, tu peux aussi rechercher une version et, avec la version installée, utiliser **Télécharger et installer**. L’installation remplace le programme en conservant tes données, sans désinstallation. Le portable donne accès à la page de téléchargement. Le [guide d’installation](INSTALLER.md#mettre-à-jour) détaille les étapes.
 
-**État au 28 octobre 2026 :** les sources sont en ligne dans le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot). La livraison est préparée avec ce dépôt pour les mises à jour et avec le client Google commun. La publication de la première **Release** reste l’étape de mise à disposition des téléchargements ; ce document ne l’annonce pas comme déjà publiée. La procédure se trouve dans [PUBLIER.md](PUBLIER.md).
+**Publication :** [PrépaPilot 2.26.0](https://github.com/clmtxx/PrepaPilot/releases/tag/v2.26.0) est publiée. Le correctif **2.26.1** corrige le téléchargement des mises à jour depuis GitHub et suit sa validation finale. Le lien [dernière version stable](https://github.com/clmtxx/PrepaPilot/releases/latest) permet de retrouver les téléchargements disponibles. Le dépôt officiel sert aux mises à jour et les distributions incluent le client Google commun, sans compte connecté. La procédure de publication se trouve dans [PUBLIER.md](PUBLIER.md).
 
 ## Données personnelles
 
