@@ -23,7 +23,7 @@ APP = QApplication.instance() or QApplication([])
 class TransferTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.source = AppContext(self.root / "premier-pc")
         self.target = AppContext(self.root / "autre-pc")
         self.source.db.add_grade("maths", "ds", 16, 20, "2026-09-20", "Suites", 2)

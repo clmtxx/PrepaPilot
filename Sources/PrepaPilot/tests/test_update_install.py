@@ -48,6 +48,40 @@ class UpdateInstallTests(unittest.TestCase):
         self.assertEqual(request.sha256, self.digest)
         self.popen.assert_not_called()
 
+    @unittest.skipUnless(install.sys.platform == 'win32', 'Windows 8.3 paths required')
+    def test_preparation_accepts_short_file_and_cache_paths_without_weakening_checks(self):
+        get_short_path = ctypes.WinDLL('kernel32', use_last_error=True).GetShortPathNameW
+        get_short_path.argtypes = (ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32)
+        get_short_path.restype = ctypes.c_uint32
+
+        def short_path(path):
+            size = get_short_path(str(path), None, 0)
+            if not size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            buffer = ctypes.create_unicode_buffer(size)
+            written = get_short_path(str(path), buffer, size)
+            if not written or written >= size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            return Path(buffer.value)
+
+        short_file, short_cache = short_path(self.path), short_path(self.cache)
+        if short_file == self.path and short_cache == self.cache:
+            self.skipTest('8.3 aliases are not enabled on this volume')
+        self.assertEqual(short_file.resolve(), self.path)
+        self.assertEqual(short_cache.resolve(), self.cache)
+        for path, cache in ((short_file, self.cache), (self.path, short_cache),
+                            (short_file, short_cache)):
+            with self.subTest(path=path, cache=cache):
+                request = self.prepare(path=path, cache_dir=cache)
+                self.assertEqual(request.path, self.path)
+                self.assertEqual(request.size, len(self.content))
+                self.assertEqual(request.sha256, self.digest)
+                with self.assertRaises(ValueError):
+                    self.prepare(path=path, cache_dir=cache, expected_digest='0' * 64)
+                with self.assertRaises(ValueError):
+                    self.prepare(path=path, cache_dir=cache.parent)
+        self.popen.assert_not_called()
+
     def test_modified_same_size_download_is_rejected_during_preparation(self):
         self.path.write_bytes(self.content[:-1] + b'x')
         with self.assertRaises(ValueError):
@@ -86,9 +120,33 @@ class UpdateInstallTests(unittest.TestCase):
 
     def test_junction_or_symlink_in_cache_ancestors_is_rejected(self):
         for method in ('is_symlink', 'is_junction'):
-            with patch.object(Path, method, lambda path: path == self.cache):
-                with self.assertRaises(ValueError):
-                    self.prepare()
+            for redirected in (self.path, self.cache, self.root):
+                with self.subTest(method=method, redirected=redirected):
+                    with patch.object(Path, method, lambda path: path == redirected):
+                        with self.assertRaises(ValueError):
+                            self.prepare()
+        self.popen.assert_not_called()
+
+    @unittest.skipUnless(install.sys.platform == 'win32', 'Windows junctions required')
+    def test_real_junctions_in_cache_or_ancestor_are_rejected_before_resolution(self):
+        import _winapi
+
+        cache_link = self.root / 'cache-link'
+        root_link = self.root / 'root-link'
+        links = []
+        try:
+            for target, link in ((self.cache, cache_link), (self.root, root_link)):
+                _winapi.CreateJunction(str(target), str(link))
+                links.append(link)
+                self.assertTrue(link.is_junction())
+            for cache in (cache_link, root_link / self.cache.name):
+                with self.subTest(cache=cache):
+                    with self.assertRaises(ValueError):
+                        self.prepare(path=cache / self.path.name, cache_dir=cache)
+                    self.assertEqual(self.path.read_bytes(), self.content)
+        finally:
+            for link in reversed(links):
+                link.rmdir()
         self.popen.assert_not_called()
 
     def test_file_modified_after_confirmation_is_rejected_before_launch(self):

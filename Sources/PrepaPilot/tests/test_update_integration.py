@@ -24,7 +24,15 @@ APP.setQuitOnLastWindowClosed(False)
 class UpdateIntegrationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
+        self.error_patch = patch('mpsi_desktop.window.show_error',
+            side_effect=lambda _parent, message: self.fail('Unexpected update error dialog: ' + message))
+        self.error_patch.start()
+        self.addCleanup(self.error_patch.stop)
+        self.popen_patch = patch('mpsi_desktop.update_install.subprocess.Popen',
+            side_effect=AssertionError('An integration test must never start an installer'))
+        self.popen_patch.start()
+        self.addCleanup(self.popen_patch.stop)
         self.ctx = AppContext(self.root / 'data')
         self.ctx.db.set_setting('desktop_reduced_motion', True)
         self.windows = []

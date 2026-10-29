@@ -25,7 +25,7 @@ APP.setQuitOnLastWindowClosed(False)
 class DocumentStoreTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory()
-        self.root=Path(self.temp.name)
+        self.root=Path(self.temp.name).resolve()
         self.db=DesktopStore(self.root/'data/mpsi.sqlite3')
 
     def tearDown(self):

@@ -1,4 +1,4 @@
-# Vérifications avant publication — 28 octobre 2026
+# Vérifications avant publication — 29 octobre 2026
 
 Ce compte rendu complète les rapports historiques de [vérification de l’application](Sources/PrepaPilot/VERIFICATION.md) et de [distribution Windows](VERIFICATION-DISTRIBUTION.md). Il décrit les contrôles réalisés le 28 octobre 2026 sur les sources, les installateurs locaux **2.26.0** et un parcours Google réel. Les sources sont sur le dépôt public [clmtxx/PrepaPilot](https://github.com/clmtxx/PrepaPilot) ; **la première Release n’est pas annoncée comme publiée** par ce compte rendu.
 
@@ -14,10 +14,10 @@ Une première construction configurée a passé les diagnostics compilés franç
 
 | Périmètre | Cas découverts | Réussis | Ignorés |
 | --- | ---: | ---: | ---: |
-| Application | 851 | 851 | 0 |
+| Application | 853 | 853 | 0 |
 | Scripts de distribution | 23 | 23 | 0 |
 | Outils de maintenance et de préparation | 35 | 33 | 2 |
-| **Total** | **909** | **907** | **2** |
+| **Total** | **911** | **909** | **2** |
 
 Les résultats sont consolidés par identifiant de test, avec comparaison aux cas effectivement découverts : aucun résultat ne manque et les répétitions après interruption ne sont pas additionnées. Les deux cas ignorés nécessitent le privilège Windows de création de liens symboliques.
 
@@ -30,6 +30,14 @@ Une fixture de `Outils/test_mise_a_jour.py` a été corrigée, dans les sources 
 Le nettoyage de `scripts/build_release.py` refusait les chemins Windows 8.3, comme `RUNNER~1`, lorsqu’ils désignaient le même répertoire qu’un chemin long. Le problème a été reproduit localement avec de vrais alias 8.3. Les deux chemins sont maintenant normalisés **après** le contrôle des liens symboliques et des jonctions dans tous leurs ancêtres. La suppression reste limitée à un enfant direct nommé `release-*` du répertoire temporaire de construction.
 
 Deux tests de régression ont été ajoutés : variantes réelles de chemins courts pour la racine et la cible ; refus de jonctions réelles dans la cible, la racine ou un ancêtre, avec conservation d’un fichier témoin. Le contrôle existant des bornes de suppression vérifie aussi les dossiers étrangers et les sous-dossiers imbriqués. La suite des scripts passe ses **23 tests en 0,351 s** ; la création des jonctions fictives a nécessité l’accès local autorisé. Les résultats applicatifs et d’outils ci-dessus proviennent de la campagne précédente du même jour ; ces deux périmètres n’ont pas été relancés pour ce changement du constructeur.
+
+### Finalisation du 29 octobre — chemins Windows et erreurs de test
+
+Les deux premières exécutions GitHub ont été interrompues au bout de trente minutes : une erreur de chemin dans le test d’installation ouvrait une boîte de dialogue qui attendait une réponse. Les noms Windows abrégés et longs désignaient pourtant le même fichier. Le lancement des mises à jour accepte maintenant ces alias après vérification de tous les ancêtres contre les liens symboliques et les jonctions. Les contrôles du répertoire de téléchargement, du nom, de la version, de la taille et de l’empreinte sont conservés.
+
+Deux nouveaux tests vérifient les alias Windows 8.3 réels et les jonctions réelles. Les tests d’intégration échouent immédiatement en cas de boîte d’erreur inattendue et interdisent tout démarrage d’installateur réel. Les fixtures de documents et de transferts utilisent également des chemins canoniques, comme les données de l’application. Les deux échecs de comparaison ont été reproduits avant correction.
+
+Les **53 tests ciblés de mises à jour** et les **42 tests de documents et de transferts** passent avec de vrais chemins temporaires Windows abrégés. Les deux nouveaux cas portent le périmètre applicatif à **853 tests distincts**. Le tableau consolide la campagne du 28 octobre et les contrôles ciblés du 29 octobre sans compter les répétitions. Le résultat de la construction GitHub finale est contrôlé séparément avant la fin de la publication.
 
 ## Historique — premiers essais réels de l’installateur Windows
 

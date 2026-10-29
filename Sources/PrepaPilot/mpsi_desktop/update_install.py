@@ -18,9 +18,10 @@ class InstallRequest:
 
 def _plain(path):
     path = Path(os.path.abspath(path))
-    if path.resolve() != path or any(p.is_symlink() or p.is_junction() for p in (path, *path.parents)):
+    if any(p.is_symlink() or p.is_junction() for p in (path, *path.parents)):
         raise ValueError('Invalid installer path')
-    return path
+    # Windows 8.3 aliases are valid only after every redirect has been rejected.
+    return path.resolve()
 
 
 def _digest(path):
